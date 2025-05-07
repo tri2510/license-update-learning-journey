@@ -25,6 +25,18 @@ export default PATHS = [
       secret: "hidden-information",
     },
     courses: [],
+    maps: [
+        {
+            course_id: "",
+            x: "10%",
+            y: "20%"
+        },
+        {
+            course_id: "",
+            x: "15%",
+            y: "20%"
+        }
+    ],
     createdAt: "2024-07-19T14:00:00.000Z",
     updatedAt: "2024-07-19T14:00:00.000Z",
   },
