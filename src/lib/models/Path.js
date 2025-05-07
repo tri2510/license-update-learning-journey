@@ -18,6 +18,7 @@ const PostSchema = new mongoose.Schema(
     configs: { type: Schema.Types.Mixed },
     extends: { type: Schema.Types.Mixed },
     hiddenContent: { type: Schema.Types.Mixed },
+    maps: { type: Schema.Types.Mixed },
     courses: [{type: Schema.Types.ObjectId, ref: 'Course'}],
   },
   { timestamps: true }
