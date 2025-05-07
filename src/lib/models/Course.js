@@ -7,22 +7,25 @@ const CourseSchema = new mongoose.Schema(
     description: { type: String, limit: 10240 },
     slug: { type: String, required: true, unique: true },
     course_type: { type: String, default: "standard" },
-    image: { type: String},
+    image: { type: String },
     thumb: { type: String },
     tags: { type: [String] },
-    category: { type: String, limit: 255},
-    valid_from: { type: Date},
-    valid_to: { type: Date},
-    state: { type: String, limit: 255, default: 'draft'},   // draft, reviewed, released
+    category: { type: String, limit: 255 },
+    icon: { type: String },
+    difficulty: { type: String, limit: 255 },  // beginner, intermediate, advanced
+    duration: { type: Number, default: 60 }, // in hours
+    valid_from: { type: Date },
+    valid_to: { type: Date },
+    state: { type: String, limit: 255, default: 'draft' },   // draft, reviewed, released
     configs: { type: Schema.Types.Mixed },
     extends: { type: Schema.Types.Mixed },
     hiddenContent: { type: Schema.Types.Mixed },
-    lessons: [{type: Schema.Types.ObjectId, ref: 'Lesson'}],
+    lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
   },
   { timestamps: true }
 );
- 
-CourseSchema.index({ category: 1 }); 
+
+CourseSchema.index({ category: 1 });
 CourseSchema.index({ slug: 1 });
 CourseSchema.index({ tags: 1 });
 CourseSchema.index({ name: 1 });

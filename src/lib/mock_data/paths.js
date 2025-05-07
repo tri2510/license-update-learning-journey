@@ -1,4 +1,4 @@
-export default PATHS = [
+export const PATHS = [
   {
     _id: "651fb6d0a63a8b3774a283ea",
     name: "Playground onboarding",
@@ -6,7 +6,7 @@ export default PATHS = [
       "This is a longer description for the example post.  It can be up to 4096 characters long.",
     slug: "playground-onboarding",
     path_type: "standard",
-    background_img: "https://example.com/background.jpg",
+    background_img: "https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/canva-bg.png",
     image: "https://example.com/image.png",
     thumb: "https://example.com/thumbnail.jpg",
     category: "onboarding",
@@ -24,15 +24,18 @@ export default PATHS = [
     hiddenContent: {
       secret: "hidden-information",
     },
-    courses: [],
+    courses: [
+      "652f3c2e4f1a2b3c4d5e6f7g",
+      "652f3c2e4f1a2b3c4d5e6f8h"
+    ],
     maps: [
         {
-            course_id: "",
+            course_id: "652f3c2e4f1a2b3c4d5e6f7g",
             x: "10%",
             y: "20%"
         },
         {
-            course_id: "",
+            course_id: "652f3c2e4f1a2b3c4d5e6f8h",
             x: "15%",
             y: "20%"
         }
@@ -41,3 +44,4 @@ export default PATHS = [
     updatedAt: "2024-07-19T14:00:00.000Z",
   },
 ];
+
