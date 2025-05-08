@@ -41,18 +41,20 @@ import 'ckeditor5/ckeditor5.css';
 
 interface RichTextExditorProps {
     value: string
-    onChange?: (e:any) => void
-    onReady?: (e:any) => void
+    onChange?: (data: string) => void
+    onReady?: (editor: any) => void
 }
 
 function RichTextExditor({ value, onChange, onReady }: RichTextExditorProps) {
-    const editorRef = useRef()
+    const editorRef = useRef<any>(null); // Specify the type for useRef
+
     return (
         <CKEditor
             editor={ClassicEditor}
             config={{
                 licenseKey: 'GPL',
-                plugins: [Essentials,
+                plugins: [
+                    Essentials,
                     CKFinderUploadAdapter,
                     Autoformat,
                     Bold,
@@ -82,7 +84,8 @@ function RichTextExditor({ value, onChange, onReady }: RichTextExditorProps) {
                     Base64UploadAdapter,
                     Font,
                     CodeBlock,
-                    Clipboard],
+                    Clipboard
+                ],
                 toolbar: [
                     'undo', 'redo',
                     '|', 'heading',
@@ -112,21 +115,19 @@ function RichTextExditor({ value, onChange, onReady }: RichTextExditorProps) {
                 language: 'en',
             }}
             data={value}
-            content={value}
             onReady={(editor) => {
-                editorRef.current = editor
+                editorRef.current = editor;
                 if (onReady) {
-                    onReady(editor)
+                    onReady(editor);
                 }
-
             }}
             onChange={() => {
                 if (onChange) {
-                    onChange(editorRef.current?.getData())
+                    onChange(editorRef.current?.getData() || ''); // Ensure data is passed
                 }
             }}
         />
     );
 }
 
-export default RichTextExditor
+export default RichTextExditor;
