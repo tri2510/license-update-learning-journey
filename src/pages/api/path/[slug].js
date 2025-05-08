@@ -1,5 +1,5 @@
-import connectToDatabase from "@/lib/mongodb";
-import Path from "@/lib/models/Path";
+import connectToDatabase from "@/src/lib/mongodb";
+import Path from "@/src/lib/models/Path";
 
 export default async function handler(req, res) {
   const { method } = req;
