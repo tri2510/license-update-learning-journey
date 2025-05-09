@@ -6,9 +6,9 @@ export const PATHS = [
       "This is a longer description for the example post.  It can be up to 4096 characters long.",
     slug: "playground-onboarding",
     path_type: "standard",
-    background_img: "https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/canva-bg.png",
-    image: "https://example.com/image.png",
-    thumb: "https://example.com/thumbnail.jpg",
+    background_img: "/imgs/canva-bg.png",
+    image: "https://bewebstudio.digitalauto.tech/data/projects/OyNGtTQf2N0l/bot.png",
+    thumb: "https://bewebstudio.digitalauto.tech/data/projects/OyNGtTQf2N0l/bot.png",
     category: "onboarding",
     tags: ["onboard", "general", "playground", "beginner", "getting-started"],
     valid_from: "2025-01-01T00:00:00.000Z",
@@ -24,21 +24,27 @@ export const PATHS = [
     hiddenContent: {
       secret: "hidden-information",
     },
-    courses: [
+    course_ids: [
       "652f3c2e4f1a2b3c4d5e6f7g",
-      "652f3c2e4f1a2b3c4d5e6f8h"
+      "652f3c2e4f1a2b3c4d5e6f8h",
+      "507f1f77bcf86cd799439011"
     ],
     maps: [
         {
             course_id: "652f3c2e4f1a2b3c4d5e6f7g",
-            x: "10%",
-            y: "20%"
+            x: "2%",
+            y: "35.8%"
         },
         {
             course_id: "652f3c2e4f1a2b3c4d5e6f8h",
-            x: "15%",
-            y: "20%"
-        }
+            x: "13%",
+            y: "35.8%"
+        },
+        {
+          course_id: "507f1f77bcf86cd799439011",
+          x: "26%",
+          y: "35.8%"
+      }
     ],
     createdAt: "2024-07-19T14:00:00.000Z",
     updatedAt: "2024-07-19T14:00:00.000Z",
