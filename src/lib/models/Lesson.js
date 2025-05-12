@@ -10,15 +10,20 @@ const LessonSchema = new mongoose.Schema(
     image: { type: String },
     thumb: { type: String },
     tags: { type: [String] },
-    valid_from: { type: Date},
-    valid_to: { type: Date},
-    state: { type: String, limit: 255, default: 'draft'},   // draft, reviewed, released
+    valid_from: { type: Date },
+    valid_to: { type: Date },
+    state: { type: String, limit: 255, default: 'draft' },   // draft, reviewed, released
     configs: { type: Schema.Types.Mixed },
     extends: { type: Schema.Types.Mixed },
     hiddenContent: { type: Schema.Types.Mixed },
     content: { type: Schema.Types.Mixed },
   },
-  { timestamps: true }
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
+    }
+  }
 );
 
 LessonSchema.index({ slug: 1 });

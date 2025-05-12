@@ -2,16 +2,20 @@
 
 interface ButtonProps {
     children?: any
-    variant?: string
+    variant?: string    // default is solid, outlined, 
   }
 
 export default function Btn({ children, variant }: ButtonProps) {
     return (
         <button
-            className={`inline-flex items-center px-4 py-2 border border-transparent 
-                rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 
-                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500
-                 ${variant === "outline" ? "bg-white text-primary-700 hover:bg-primary-50" : ""}`}
+            className={`inline-flex items-center px-4 py-2 hover:opacity-70
+                rounded-xl shadow-sm text-lg font-bold text-white bg-[#004F70]
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600
+                border-2 border-gray-800
+                 ${variant === "outlined" ? "!bg-transparent !text-[#004F70] !border-[#004F70]" : ""}
+                 ${variant === "disabled" ? "!bg-gray-300 !text-gray-400 !border-gray-400 cursor-default hover:opacity-100" : ""}
+                `
+            }
         >
             {children}
         </button>

@@ -2,7 +2,8 @@ export const COURSES = [
     {
         _id: "652f3c2e4f1a2b3c4d5e6f7g", // Random MongoDB ObjectId
         name: "Introduction to JavaScript",
-        description: "Learn the basics of JavaScript, the most popular programming language for web development.",
+        shortDescription: "A beginner's guide to JavaScript, the programming language of the web.",
+        description: "This course covers the fundamentals of JavaScript, including variables, data types, functions, and control structures. You'll learn how to write basic scripts and understand the core concepts of programming.",
         slug: "introduction-to-javascript",
         course_type: "standard",
         image: "https://example.com/images/js-course.jpg",
@@ -20,11 +21,22 @@ export const COURSES = [
         extends: { prerequisites: "None" },
         hiddenContent: { notes: "Instructor-only materials" },
         lessons: [],
+        created_at: new Date("2023-01-01"),
+        updated_at: new Date("2023-06-07"),
+        created_by: "John Doe",
+        num_learners: 745,
+        num_certified_learners: 532,
+        context: {
+            user_id: 'abc',
+            state: 'finished'
+        },
+        lessons: []
     },
     {
         _id: "652f3c2e4f1a2b3c4d5e6f8h", // Random MongoDB ObjectId
         name: "Advanced React Techniques",
-        description: "Master advanced concepts and patterns in React to build scalable and high-performance applications.",
+        shortDescription: "Master advanced concepts and patterns in React to build scalable and high-performance applications.",
+        description: "Explore advanced React patterns, including higher-order components, render props, and hooks. This course is designed for experienced React developers looking to deepen their understanding of the library and improve their application architecture.",
         slug: "advanced-react-techniques",
         course_type: "premium",
         image: "https://example.com/images/react-course.jpg",
@@ -42,12 +54,23 @@ export const COURSES = [
         extends: { prerequisites: "Basic React knowledge" },
         hiddenContent: { notes: "Includes bonus materials" },
         lessons: [],
+        created_at: new Date("2023-01-02"),
+        updated_at: new Date("2023-03-02"),
+        created_by: "John Doe",
+        num_learners: 500,
+        num_certified_learners: 120,
+        context: {
+            user_id: 'abc',
+            state: 'inprogress'
+        },
+        lessons: []
     },
     {
         _id: "507f1f77bcf86cd799439011", // Random MongoDB ObjectId
         name: "Typescript",
-        description: "Master advanced concepts and patterns in React to build scalable and high-performance applications.",
-        slug: "advanced-react-techniques",
+        shortDescription: "Learn TypeScript, a superset of JavaScript that adds static typing.",
+        description: "This course introduces TypeScript, a typed superset of JavaScript that compiles to plain JavaScript. You'll learn about type annotations, interfaces, and how to use TypeScript with popular frameworks like React and Node.js.",
+        slug: "typescipt",
         course_type: "premium",
         image: "https://example.com/images/react-course.jpg",
         thumb: "https://example.com/images/react-thumb.jpg",
@@ -64,5 +87,15 @@ export const COURSES = [
         extends: { prerequisites: "Basic React knowledge" },
         hiddenContent: { notes: "Includes bonus materials" },
         lessons: [],
+        created_at: new Date("2024-04-03"),
+        updated_at: new Date("2024-06-06"),
+        created_by: "John Doe",
+        num_learners: 453,
+        num_certified_learners: 87,
+        context: {
+            user_id: 'abc',
+            state: 'ready'
+        },
+        lessons: []
     },
 ];

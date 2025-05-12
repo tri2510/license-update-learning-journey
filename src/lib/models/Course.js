@@ -22,7 +22,12 @@ const CourseSchema = new mongoose.Schema(
     hiddenContent: { type: Schema.Types.Mixed },
     lessons: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
   },
-  { timestamps: true }
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
+    }
+  }
 );
 
 CourseSchema.index({ category: 1 });
