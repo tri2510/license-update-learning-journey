@@ -26,7 +26,7 @@ const PathList = ({ paths }) => {
                                         <MdOutlineArrowForwardIos size={24} className="text-black hover:scale-130"/>
                                     </div>
                                     
-                                    <div className="text-base leading-tight h-[70px] line-clamp-3">{path.description}</div>
+                                    <div className="text-base leading-tight h-[66px] line-clamp-3">{path.description}</div>
                                 </div>
                             </div>
                         </Link>
