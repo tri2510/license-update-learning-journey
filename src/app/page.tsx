@@ -10,6 +10,9 @@ export default async function Home() {
     console.log(err)
   }
 
+  console.log("dbPaths")
+  console.log(dbPaths)
+
 
   return (
     <div className="bg-white text-slate-600 text-2xl p-0

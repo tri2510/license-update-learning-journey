@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { PATHS } from "@/lib/mock_data/paths"
 
 const PathList = ({ paths }) => {
-    if (!paths) return;
-
+    if(!paths) {
+        paths = PATHS
+    }
     if (!paths || paths.length === 0) return <div 
-        className="text-slate-500 text-lg font-semibold">No paths available</div>
+        className="text-slate-500 text-lg font-semibold grid place-items-center h-[200px]">No paths available</div>
 
     return <div className="bg-white w-full pt-4 pb-8 flex justify-center items-center">
         <div className="container rounded-xl bg-[#F8F296] text-slate-600 p-0 pb-8 flex flex-col pt-10 items-center">
