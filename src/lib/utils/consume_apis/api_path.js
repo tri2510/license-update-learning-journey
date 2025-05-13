@@ -1,6 +1,6 @@
 async function fetchPaths() {
     try {
-        const response = (await fetch((process.env.HOST || 'http://localhost:3000') + "/api/paths"))
+        const response = (await fetch(process.env.HOST + "/api/paths"))
         const data = await response.json();
         if (data && data.success) {
             return data.data
@@ -16,7 +16,7 @@ async function fetchPaths() {
 async function fetchPathBySlug(slug) {
     if (!slug) throw ('Invalid post slug');
     try {
-        const response = (await fetch((process.env.HOST || 'http://localhost:3000') + "/api/paths/" + slug))
+        const response = (await fetch(process.env.HOST + "/api/paths/" + slug))
         const data = await response.json();
         if (data && data.success) {
             return data.data
