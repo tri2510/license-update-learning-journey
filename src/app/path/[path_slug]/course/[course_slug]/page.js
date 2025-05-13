@@ -25,15 +25,15 @@ const Page = async  ({params}) => {
 
   return (
     <div
-      className="w-full bg-[#FFF9EC] text-slate-600 text-2xl p-0
-                h-full place-items-center"
+      className="w-full bg-[#FFF9EC] text-slate-600 text-2xl p-0 pb-4
+                h-fit min-h-full place-items-center"
     >
       <BreadCrumb items={[
           { label: dbPath.name, link: `/path/${path_slug}` }, 
           { label: dbCourse.name, link: `/path/${path_slug}/course/${course_slug}` } 
         ]} />
 
-      <div className="w-full h-fit mt-4 px-4 flex flex-col">
+      <div className="w-full mt-4 px-4 flex flex-col">
         <CourseIntroScreen course={dbCourse}/>
       </div>
     </div>
