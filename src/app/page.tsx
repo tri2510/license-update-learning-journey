@@ -15,7 +15,7 @@ export default async function Home() {
     <div className="bg-white text-slate-600 text-2xl p-0
         h-full w-full flex flex-col gap-4">
 
-      <div className="w-full bg-[#46499E] text-white flex flex-col items-center pt-8 pb-8">
+      <div className="w-full bg-[#46499E] text-white flex flex-col items-center pt-8 pb-8 px-4">
         <div className="container h-full flex flex-row gap-4">
           <div className="flex-2 px-2">
             <div className="text-5xl font-bold  pt-8 text-left">
