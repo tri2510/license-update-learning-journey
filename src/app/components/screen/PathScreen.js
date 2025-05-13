@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { TfiHome } from "react-icons/tfi";
+import Link from "next/link";
 
 const PathScreen = ({ path }) => {
   const router = useRouter();
@@ -18,6 +20,13 @@ const PathScreen = ({ path }) => {
               src={path.background_img}
               alt={path.name}
             />
+
+            <div className="absolute top-6 left-6 z-20">
+              <Link href="/">
+                <TfiHome size={32} className="text-slate-700 hover:scale-110"/>
+              </Link>
+            </div>
+
             <div className="absolute top-0 left-0 right-0 bottom-0 opacity-10 bg-white z-10"></div>
             {path.maps &&
               path.maps.map((item, index) => (

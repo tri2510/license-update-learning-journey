@@ -38,7 +38,7 @@ const CourseTableContentBlock= ({course}) => {
 
     return <div>
         {course.lessons.map((lesson, index) => (
-            <Link href={`${window.location.href}/lesson/${lesson.slug}`} key={index}>
+            <Link href={window.location.href || `${window.location.href}/lesson/${lesson.slug}`} key={index}>
                 <div className='mt-3 pl-2 pr-2 py-2 flex items-start border-2 border-gray-400 rounded-xl
                     hover:border-black hover:opacity-80 cursor-pointer'>
                     <LessonIcon lessonType={lesson.lesson_type} forceIcon={lesson.icon} />

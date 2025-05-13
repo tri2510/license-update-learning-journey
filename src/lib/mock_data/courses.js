@@ -1,10 +1,10 @@
 export const COURSES = [
     {
         _id: "652f3c2e4f1a2b3c4d5e6f7g", // Random MongoDB ObjectId
-        name: "Introduction to JavaScript",
-        shortDescription: "A beginner's guide to JavaScript, the programming language of the web.",
-        description: "This course covers the fundamentals of JavaScript, including variables, data types, functions, and control structures. You'll learn how to write basic scripts and understand the core concepts of programming.",
-        slug: "introduction-to-javascript",
+        name: "Playground Introduction",
+        shortDescription: "Whhat is thge purpose of this playground?",
+        description: "Provide a brief overview of the playground and its purpose. This course is designed to help you understand the basics of the playground and how to navigate through it.",
+        slug: "playground-introduction",
         course_type: "standard",
         image: "https://example.com/images/js-course.jpg",
         thumb: "https://example.com/images/js-thumb.jpg",
@@ -33,11 +33,11 @@ export const COURSES = [
         lessons: []
     },
     {
-        _id: "652f3c2e4f1a2b3c4d5e6f8h", // Random MongoDB ObjectId
-        name: "Advanced React Techniques",
-        shortDescription: "Master advanced concepts and patterns in React to build scalable and high-performance applications.",
-        description: "Explore advanced React patterns, including higher-order components, render props, and hooks. This course is designed for experienced React developers looking to deepen their understanding of the library and improve their application architecture.",
-        slug: "advanced-react-techniques",
+        _id: "652f3c2e4f1a2b3c4d5e6f8h",
+        name: "Explore existing demos",
+        shortDescription: "This course provide walkthrough of existing demos.",
+        description: "Via various demos, you will learn how to use the playground and its features.",
+        slug: "explore-existing-demos",
         course_type: "premium",
         image: "https://example.com/images/react-course.jpg",
         thumb: "https://example.com/images/react-thumb.jpg",
@@ -67,10 +67,10 @@ export const COURSES = [
     },
     {
         _id: "507f1f77bcf86cd799439011", // Random MongoDB ObjectId
-        name: "Typescript",
-        shortDescription: "Learn TypeScript, a superset of JavaScript that adds static typing.",
-        description: "This course introduces TypeScript, a typed superset of JavaScript that compiles to plain JavaScript. You'll learn about type annotations, interfaces, and how to use TypeScript with popular frameworks like React and Node.js.",
-        slug: "typescipt",
+        name: "Create Vehicle Model",
+        shortDescription: "This course teaches you how to create a vehicle model.",
+        description: "In this course your will learn how to create a vehicle model using the playground. You will learn about the different components of a vehicle model and how to use them effectively.",
+        slug: "create-vehicle-model",
         course_type: "premium",
         image: "https://example.com/images/react-course.jpg",
         thumb: "https://example.com/images/react-thumb.jpg",
