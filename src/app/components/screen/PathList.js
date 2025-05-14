@@ -1,34 +1,52 @@
 "use client";
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { PATHS } from "@/lib/mock_data/paths"
 
-const PathList = ({ paths }) => {
-    if(!paths) {
-        paths = PATHS
-    }
-    if (!paths || paths.length === 0) return <div 
-        className="text-slate-500 text-lg font-semibold grid place-items-center h-[200px]">No paths available</div>
+import { useEffect, useState } from "react";
+
+const PathList = ({}) => {
+    const [paths, setPaths] = useState([])
+    useEffect(()=> {
+        const fetchPaths = async () => {
+            try {
+                const response = await fetch("/api/paths")
+                const data = await response.json();
+                if (data && data.success) {
+                    setPaths(data.data)
+                } else {
+                    setPaths([])
+                }
+            } catch (error) {
+                console.log(error)
+                setPaths([])
+            }
+        }
+        fetchPaths()
+    }, [])
 
     return <div className="bg-white w-full pt-4 pb-8 flex justify-center items-center">
         <div className="container rounded-xl bg-[#F8F296] text-slate-600 p-0 pb-8 flex flex-col pt-10 items-center">
-            <div className="text-4xl text-gray-800">Follow our <b>Paths</b></div>
-            <div className="text-xl text-gray-700 font-base mt-1">
+            <div className="text-2x lg:text-4xl text-gray-800">Follow our <b>Paths</b></div>
+            <div className="px-4 text-center text-base lg:text-xl text-gray-700 font-base mt-1">
                 Paths are a series of fun coding and prototyping that will help you gain new skills in SDV.</div>
 
-                <div className="mt-8 grid grid-cols-2 gap-8 w-full px-20">
+                {(!paths || paths.length === 0) && <div className="w-full text-slate-500 italic text-lg font-light grid place-items-center h-[120px]">
+                    No paths available</div> }
+
+                <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8 w-full px-10 xl:px-20">
+
                     {paths.map((path, index) => (
                         <Link href={path.extends?.external_link || `/path/${path.slug}`} key={index} target={path.extends?.external_link&&"_blank"}>
                             <div className="w-full bg-white text-slate-600 text-lg rounded-xl 
                                 cursor-pointer flex flex-row justify-center px-6 py-4">
-                                <img src={path.thumb} className="w-36 h-36 object-contain rounded-lg "/>
+                                <img src={path.thumb} className="x-26 h-26 xl:w-36 xl:h-36 object-contain rounded-lg "/>
                                 <div className="grow pl-6 pr-2">
                                     <div className="flex items-center justify-center mb-2">
-                                        <div className="text-2xl h-[60px] line-clamp-2 font-semibold leading-tight text-gray-700 grow">{path.name}</div>
-                                        <MdOutlineArrowForwardIos size={24} className="text-black hover:scale-130"/>
+                                        <div className="text-lg h-[46px] xl:text-2xl xl:h-[60px] line-clamp-2 font-semibold leading-tight text-gray-700 grow">{path.name}</div>
+                                        <MdOutlineArrowForwardIos size={24} className="min-w-8 text-black hover:scale-130 ml-2"/>
                                     </div>
                                     
-                                    <div className="text-base leading-tight h-[64px] line-clamp-3">{path.description}</div>
+                                    <div className="text-sm xl:text-base leading-tight h-[48px] xl:h-[64px] line-clamp-3">{path.description}</div>
                                 </div>
                             </div>
                         </Link>

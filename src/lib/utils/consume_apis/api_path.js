@@ -1,6 +1,6 @@
 async function fetchPaths() {
     try {
-        const response = (await fetch(process.env.HOST + "/api/paths"))
+        const response = (await fetch("/api/paths"))
         const data = await response.json();
         if (data && data.success) {
             return data.data
@@ -8,8 +8,7 @@ async function fetchPaths() {
             throw ('Paths not found')
         }
     } catch (error) {
-        console.log(error)
-        return null
+        return []
     }
 }
 

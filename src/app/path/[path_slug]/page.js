@@ -21,8 +21,6 @@ const Page =  async ({params}) => {
       })
     }
 
-    // console.log(curPath)
-
     return (
       <div
         className="bg-slate-100 text-slate-600 text-2xl p-1
