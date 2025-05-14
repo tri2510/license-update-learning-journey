@@ -24,11 +24,11 @@ export default async function Home() {
               Your SDV journey starts here.
             </div>
             <div className="text-sm sm:text-md leading-tight font-bold text-left pt-4 mt-4 flex flex-col gap-2">
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-6" /> From zero to hero for free</div>
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-6" /> Step-by-step instructions</div>
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-6" /> Practice in our virtual lab and seamlessly transition to physical kit</div>
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-6" /> Log in to track your progress and get certificates</div>
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-6" /> Stay in the loop with our community</div>
+              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> From zero to hero</div>
+              {/* <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Step-by-step instructions</div> */}
+              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Practice in our virtual lab and seamlessly transition to physical kit</div>
+              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Track your progress and get certificates</div>
+              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Stay in the loop with our community</div>
             </div>
           </div>
 

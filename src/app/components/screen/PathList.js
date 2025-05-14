@@ -39,14 +39,15 @@ const PathList = ({}) => {
                         <Link href={path.extends?.external_link || `/path/${path.slug}`} key={index} target={path.extends?.external_link&&"_blank"}>
                             <div className="w-full bg-white text-slate-600 text-lg rounded-xl 
                                 cursor-pointer flex flex-row justify-center px-6 py-4">
-                                <img src={path.thumb} className="x-26 h-26 xl:w-36 xl:h-36 object-contain rounded-lg "/>
+                                <img src={path.thumb} 
+                                    className="aspect-square w-26 object-contain rounded-lg"/>
                                 <div className="grow pl-6 pr-2">
                                     <div className="flex items-center justify-center mb-2">
-                                        <div className="text-lg h-[46px] xl:text-2xl xl:h-[60px] line-clamp-2 font-semibold leading-tight text-gray-700 grow">{path.name}</div>
+                                        <div className="text-base h-[46px] xl:text-2xl xl:h-[60px] line-clamp-2 font-semibold leading-tight text-gray-700 grow">{path.name}</div>
                                         <MdOutlineArrowForwardIos size={24} className="min-w-8 text-black hover:scale-130 ml-2"/>
                                     </div>
                                     
-                                    <div className="text-sm xl:text-base leading-tight h-[48px] xl:h-[64px] line-clamp-3">{path.description}</div>
+                                    <div className="text-sm xl:text-base text-slate-500 leading-tight h-[48px] xl:h-[64px] line-clamp-3">{path.description}</div>
                                 </div>
                             </div>
                         </Link>
