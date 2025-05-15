@@ -1,11 +1,11 @@
 export const PATH1 = {
     _id: "64b8f3e4c9d1f2a0b8e4f3e4",
-    name: "SDV 101: Introduction to Software Defined Vehicles",
+    name: "[Coursera] SDV 101: Introduction to SDV",
     description:
-      "[Coursera] This is the first course in the SDV series. It covers the basics concepts of SDV.",
+      "This is the first course in the SDV series. It covers the basics concepts of SDV.",
     slug: "sdv-101",
     path_type: "standard",
-    background_img: "/imgs/canva-bg.png",
+    background_img: "/imgs/green_bg.png",
     image: "/imgs/sdv101.jpg",
     thumb: "/imgs/sdv101.jpg",
     category: "onboarding",

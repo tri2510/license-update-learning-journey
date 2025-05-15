@@ -5,7 +5,7 @@ export const PATH5 = {
       "This path provides a step-by-step guide for getting started with dreamPack. How to expose CAN signal from AUTOSAR application into vehicle API.",
     slug: "dreampack-getting-started",
     path_type: "standard",
-    background_img: "/imgs/canva-bg.png",
+    background_img: "/imgs/green_bg.png",
     image: "/imgs/dreampack.jpg",
     thumb: "/imgs/dreampack.jpg",
     category: "onboarding",
@@ -24,26 +24,13 @@ export const PATH5 = {
       secret: "hidden-information",
     },
     course_ids: [
-      "652f3c2e4f1a2b3c4d5e6f7g",
-      "652f3c2e4f1a2b3c4d5e6f8h",
-      "507f1f77bcf86cd799439011"
     ],
     maps: [
-        {
-            course_id: "652f3c2e4f1a2b3c4d5e6f7g",
-            x: "2%",
-            y: "35.8%"
-        },
-        {
-            course_id: "652f3c2e4f1a2b3c4d5e6f8h",
-            x: "13%",
-            y: "35.8%"
-        },
-        {
-          course_id: "507f1f77bcf86cd799439011",
-          x: "26%",
-          y: "35.8%"
-      }
+        // {
+        //     course_id: "652f3c2e4f1a2b3c4d5e6f7g",
+        //     x: "2%",
+        //     y: "35.8%"
+        // }
     ],
     createdAt: "2024-07-19T14:00:00.000Z",
     updatedAt: "2024-07-19T14:00:00.000Z",

@@ -24,11 +24,18 @@ export default async function Home() {
               Your SDV journey starts here.
             </div>
             <div className="text-sm sm:text-md leading-tight font-bold text-left pt-4 mt-4 flex flex-col gap-2">
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> From zero to hero</div>
-              {/* <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Step-by-step instructions</div> */}
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Practice in our virtual lab and seamlessly transition to physical kit</div>
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Track your progress and get certificates</div>
-              <div className="flex items-center"><FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> Stay in the loop with our community</div>
+              <div className="flex items-center">
+                <FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> 
+                From zero to hero</div>
+              <div className="flex items-center">
+                <FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> 
+                Practice in our virtual lab and seamlessly transition to physical kit</div>
+              <div className="flex items-center">
+                <FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> 
+                Track your progress and get certificates</div>
+              <div className="flex items-center">
+                <FaDiamond size={20} className="mr-8 text-[#EF60A3] min-w-4" /> 
+                Stay in the loop with our community</div>
             </div>
           </div>
 
@@ -41,10 +48,12 @@ export default async function Home() {
         <div className="container h-full flex flex-col gap-2 mt-8">
           <div className="w-full text-center">How do you want to start?</div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2 text-xs sm:text-sm lg:text-md xl:text-lg text-center leading-tight">
-            <div className="flex-1 rounded-lg bg-white flex flex-col items-center justify-center px-2 py-2 cursor-pointer hover:scale-105">
-              <img className="h-28 p-4" src="/imgs/learning_path_icon.png" />
-              <div className="text-[#46499E] font-bold px-4 py-1">I want to follow a guided path</div>
-            </div>
+            <a href="#pathList">
+              <div className="flex-1 rounded-lg bg-white flex flex-col items-center justify-center px-2 py-2 cursor-pointer hover:scale-105">
+                <img className="h-28 p-4" src="/imgs/learning_path_icon.png" />
+                <div className="text-[#46499E] font-bold px-4 py-1">I want to follow a guided path</div>
+              </div>
+            </a>
 
             <div className="flex-1 rounded-lg bg-white flex flex-col items-center justify-center px-2 py-2 cursor-pointer hover:scale-105">
               <img className="h-28" src="/imgs/edit_path_icon.jpg" />

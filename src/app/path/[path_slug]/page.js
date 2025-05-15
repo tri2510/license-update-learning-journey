@@ -28,7 +28,7 @@ const Page =  async ({params}) => {
       >
         <PathScreen path={curPath}/>
       </div>
-    );
+    )
   }
 
   export default Page;

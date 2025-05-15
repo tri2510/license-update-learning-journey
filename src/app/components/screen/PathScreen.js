@@ -20,11 +20,6 @@ const PathScreen = ({ path }) => {
               backgroundSize: "cover",
               backgroundPosition: "center"
             }}>
-            {/* <img
-              className="w-full h-full z-0 object-cover"
-              src={path.background_img}
-              alt={path.name}
-            /> */}
 
             <div className="z-0 w-full h-full left-0 top-0 opacity-50 bg-white"></div>
 
@@ -49,6 +44,13 @@ const PathScreen = ({ path }) => {
                     width: "11wv",
                   }}
                   onClick={() => {
+                    if(item.course?.extends?.external_link) {
+                      window.open(item.course?.extends?.external_link, "_blank");
+                      return;
+                    }
+                    if (item.course?.state === "locked") {
+                      return;
+                    }
                     router.push(
                       `/path/${path.slug}/course/${item.course?.slug}`
                     );
@@ -63,7 +65,8 @@ const PathScreen = ({ path }) => {
                     className=""
                   />
                   <div
-                    className="mt-1 text-slate-700 text-[9px] lg:text:[10px] font-semibold text-center leading-none"
+                    className="mt-1 text-slate-700 text-[9px] lg:text:[10px] xl:text-base 
+                              font-semibold text-center leading-none"
                     style={{
                       maxWidth: "11vw",
                     }}
