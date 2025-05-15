@@ -20,6 +20,11 @@ export const ICONs = [
         url: "/imgs/badge/certificate.png",
     },
     {
+        name: "challenge",
+        type: "icon",
+        url: "/imgs/badge/challenge.png",
+    },
+    {
         name: "badge_1",
         type: "icon",
         url: "/imgs/badge/badge_1.png",

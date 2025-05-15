@@ -63,7 +63,7 @@ const PathScreen = ({ path }) => {
                     className=""
                   />
                   <div
-                    className="text-slate-700 text-[9px] lg:text:[10px] font-semibold text-center leading-none"
+                    className="mt-1 text-slate-700 text-[9px] lg:text:[10px] font-semibold text-center leading-none"
                     style={{
                       maxWidth: "11vw",
                     }}

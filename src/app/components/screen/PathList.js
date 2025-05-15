@@ -36,7 +36,7 @@ const PathList = ({}) => {
                 <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8 w-full px-10 xl:px-20">
 
                     {paths.map((path, index) => (
-                        <Link href={path.extends?.external_link || `/path/${path.slug}`} key={index} target={path.extends?.external_link&&"_blank"}>
+                        <Link title={path.description} href={path.extends?.external_link || `/path/${path.slug}`} key={index} target={path.extends?.external_link&&"_blank"}>
                             <div className="w-full bg-white text-slate-600 text-lg rounded-xl 
                                 cursor-pointer flex flex-row justify-center px-6 py-4">
                                 <img src={path.thumb} 

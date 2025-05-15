@@ -264,6 +264,39 @@ export const COURSES = [
         lessons: []
     },
     {
+        _id: "537f1f77bcf86cd799439016", // Random MongoDB ObjectId
+        name: "Challenge - Create passenger welcome prototype",
+        shortDescription: "Create a prototype to get certificate",
+        description: "Create a prototype to get certificate",
+        slug: "challenge-passenger-welcome",
+        course_type: "premium",
+        image: "https://example.com/images/react-course.jpg",
+        thumb: "https://example.com/images/react-thumb.jpg",
+        tags: ["React", "Frontend", "Web Development"],
+        category: "Frontend Development",
+        icon: "https://example.com/icons/react-icon.png",
+        icon_name: "challenge",
+        valid_from: new Date("2023-06-01"),
+        valid_to: new Date("2024-05-31"),
+        state: "locked-highlight",
+        difficulty: "advanced",
+        duration: "6 weeks",
+        configs: { },
+        extends: { prerequisites: "Basic React knowledge" },
+        hiddenContent: { notes: "Includes bonus materials" },
+        lessons: [],
+        created_at: new Date("2024-04-03"),
+        updated_at: new Date("2024-06-06"),
+        created_by: "John Doe",
+        num_learners: 453,
+        num_certified_learners: 87,
+        context: {
+            user_id: 'abc',
+            state: 'ready'
+        },
+        lessons: []
+    },
+    {
         _id: "507f1f77bcf86cd799439016", // Random MongoDB ObjectId
         name: "Get Certificate",
         shortDescription: "Get your certification and show it off to the world!",
