@@ -1,3 +1,4 @@
+import HomeContent from "./components/screen/HomeContent";
 import PathList from "./components/screen/PathList";
 import { FaDiamond } from "react-icons/fa6";
 
@@ -75,7 +76,8 @@ export default async function Home() {
       </div>
 
       <div>
-        <PathList/>
+        {/* <PathList/> */}
+        <HomeContent />
       </div>
 
     </div>
