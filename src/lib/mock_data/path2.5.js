@@ -14,10 +14,10 @@ export const PATH2_5 = {
     state: "draft",
     level: "4",
     configs: {
-      setting1: "value1"
+      display_type: "list"
     },
     extends: {
-      external_link: "https://www.sdv.guide/pulse",
+      // external_link: "https://www.sdv.guide/pulse",
     },
     hiddenContent: {
       secret: "hidden-information",

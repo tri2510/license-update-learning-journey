@@ -110,7 +110,7 @@ export const COURSES = [
         shortDescription: "Create a prototype to get certificate",
         description: "Create a prototype to get certificate",
         icon_name: "lesson-ready",
-        top_icon: "/imgs/badge/difficulty.png",
+        top_icon: "/imgs/badge/practice.png",
         state: "locked-highlight",
         type: "lesson",
         context: {
@@ -124,7 +124,7 @@ export const COURSES = [
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
         icon_name: "lesson-ready",
-        top_icon: "/imgs/badge/cetificated.png",
+        top_icon: "/imgs/badge/quality-badge.png",
         state: "locked-highlight",
         type: "award",
         context: {

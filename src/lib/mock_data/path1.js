@@ -14,12 +14,18 @@ export const PATH1 = {
     valid_from: "2025-01-01T00:00:00.000Z",
     valid_to: "2026-01-01T00:00:00.000Z",
     state: "published",
-    configs: {},
+    configs: {
+      display_type: "list"
+    },
     extends: {
         // external_link: "https://www.coursera.org/learn/sdv101",
     },
     hiddenContent: {},
-    course_ids: [ "6452a86e7895abcd12345661", "6452a86e7895abcd12345662", "6452a86e7895abcd12345669", "6452a86e7895abcd12345663"],
+    course_ids: [ 
+      "6452a86e7895abcd12345661", 
+      "6452a86e7895abcd12345662", 
+      "6452a86e7895abcd12345669", 
+      "6452a86e7895abcd12345663"],
     maps: [
     ],
     createdAt: "2024-07-19T14:00:00.000Z",

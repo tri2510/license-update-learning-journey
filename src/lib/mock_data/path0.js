@@ -14,12 +14,22 @@ export const PATH0 = {
   valid_from: "2025-01-01T00:00:00.000Z",
   valid_to: "2026-01-01T00:00:00.000Z",
   state: "published",
-  configs: {},
+  configs: {
+    display_type: "canvas"
+  },
   extends: {
     // external_link: "https://www.sdv.guide/sdv101",
   },
   hiddenContent: {},
-  course_ids: ["6452a86e7895abcd12345678", "6452a86e7895abcd12345679", "6452a86e7895abcd12345680", "6452a86e7895abcd12345681", "6452a86e7895abcd12345682", "6452a86e7895abcd12345683"],
+  course_ids: [
+    "6452a86e7895abcd12345678", 
+    "6452a86e7895abcd12345679", 
+    "6452a86e7895abcd12345680", 
+    "6452a86e7895abcd12345681", 
+    "6452a86e7895abcd12345682", 
+    "6452a86e7895abcd12345683",
+    "6452a86e7895abcd12345684"
+  ],
   maps: [
     {
       course_id: "6452a86e7895abcd12345678",
@@ -28,26 +38,31 @@ export const PATH0 = {
     },
     {
       course_id: "6452a86e7895abcd12345679",
-      x: "22%",
+      x: "20%",
       y: "40%"
     },
     {
       course_id: "6452a86e7895abcd12345680",
-      x: "38%",
+      x: "34%",
       y: "45%"
     },
     {
       course_id: "6452a86e7895abcd12345681",
-      x: "55%",
+      x: "48%",
       y: "50%"
     },
     {
       course_id: "6452a86e7895abcd12345682",
-      x: "72%",
+      x: "61%",
       y: "55%"
     },
     {
       course_id: "6452a86e7895abcd12345683",
+      x: "72%",
+      y: "45%"
+    },
+    {
+      course_id: "6452a86e7895abcd12345684",
       x: "89%",
       y: "45%"
     }

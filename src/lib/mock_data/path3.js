@@ -15,8 +15,7 @@ export const PATH3 = {
   level: "2",
   state: "draft",
   configs: {
-    setting1: "value1",
-    setting2: true,
+    display_type: "list"
   },
   extends: {
     extraField1: "extraValue1",

@@ -26,7 +26,7 @@ const processCourse = (course) => {
         c.tags = c.tags || []
         c.extends = c.extends || {}
         c.configs = c.configs || {}
-        c.image = c.image || "https://example.com/images/js-course.jpg"
+        c.image = c.image || "/imgs/sdv101.jpg"
         c.thumb = c.thumb || "https://example.com/images/js-thumb.jpg"
         c.category = c.category || "Programming"
         c.icon = c.icon || "https://example.com/icons/js-icon.png"

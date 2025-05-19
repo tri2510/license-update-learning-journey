@@ -81,10 +81,28 @@ export const COURSES = [
     },
     {
         _id: "6452a86e7895abcd12345683", // Random MongoDB ObjectId
+        name: "Verify your knowledge",
+        shortDescription: "Verify your knowledge",
+        description: "Verify your knowledge",
+        icon_name: "lesson-ready",
+        top_icon: "/imgs/badge/practice.png",
+        state: "locked",
+        type: "lesson",
+        context: {
+            user_id: 'abc',
+            state: 'ready'
+        },
+        extends: {
+            // external_link: "https://www.sdv.guide/sdv101/part-a-essentials",
+        },
+    },
+    {
+        _id: "6452a86e7895abcd12345684", // Random MongoDB ObjectId
         name: "Get Certificate",
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
-        icon_name: "certificate",
+        icon_name: "lesson-ready",
+        top_icon: "/imgs/badge/quality-badge.png",
         state: "locked-highlight",
         type: "award",
         context: {

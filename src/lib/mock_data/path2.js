@@ -15,8 +15,7 @@ export const PATH2 = {
     state: "draft",
     level: "1",
     configs: {
-      setting1: "value1",
-      setting2: true,
+      display_type: "canvas"
     },
     extends: {
       extraField1: "extraValue1",
