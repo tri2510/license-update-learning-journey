@@ -56,14 +56,21 @@ const PathScreen = ({ path }) => {
                     );
                   }}
                 >
-                  <img
-                    src={item.course?.icon}
-                    style={{
+                  <div className="relative" style={{
                       width: "6.5vw",
                       height: "6.5vw",
-                    }}
-                    className=""
-                  />
+                    }}>
+                       <img
+                        src={item.course?.icon}
+                        className="absolute h-full w-full top-0 left-0 z-0 object-contain"
+                      />
+                      {item.course?.top_icon && <img src={item.course?.top_icon} 
+                        className="absolute top-[27%] left-[30%] z-10 w-[40%] h-[40%]"/>}
+                  </div>
+                 
+
+                  
+
                   <div
                     className="mt-1 text-slate-700 text-[9px] lg:text:[10px] xl:text-base 
                               font-semibold text-center leading-none"

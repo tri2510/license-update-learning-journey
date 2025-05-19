@@ -82,7 +82,8 @@ export const COURSES = [
         name: "Collect Vehicle API Badge",
         shortDescription: "You are now ready to get your Vehicle API badge.",
         description: "Collect your Vehicle API badge and show it off to the world!",
-        icon_name: "badge_1",
+        icon_name: "lesson-ready",
+        top_icon: "/imgs/badge/badge_rocket.png",
         type: "award",
         state: "locked-highlight",
         context: {
@@ -108,7 +109,8 @@ export const COURSES = [
         name: "Challenge - Create passenger welcome prototype",
         shortDescription: "Create a prototype to get certificate",
         description: "Create a prototype to get certificate",
-        icon_name: "challenge",
+        icon_name: "lesson-ready",
+        top_icon: "/imgs/badge/difficulty.png",
         state: "locked-highlight",
         type: "lesson",
         context: {
@@ -121,7 +123,8 @@ export const COURSES = [
         name: "Get Certificate",
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
-        icon_name: "certificate",
+        icon_name: "lesson-ready",
+        top_icon: "/imgs/badge/cetificated.png",
         state: "locked-highlight",
         type: "award",
         context: {
