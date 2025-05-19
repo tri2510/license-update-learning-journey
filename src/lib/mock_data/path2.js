@@ -13,6 +13,7 @@ export const PATH2 = {
     valid_from: "2025-01-01T00:00:00.000Z",
     valid_to: "2026-01-01T00:00:00.000Z",
     state: "draft",
+    level: "1",
     configs: {
       setting1: "value1",
       setting2: true,

@@ -12,6 +12,7 @@ export const PATH2_5 = {
     valid_from: "2025-01-01T00:00:00.000Z",
     valid_to: "2026-01-01T00:00:00.000Z",
     state: "draft",
+    level: "4",
     configs: {
       setting1: "value1"
     },
@@ -22,7 +23,13 @@ export const PATH2_5 = {
       secret: "hidden-information",
     },
     course_ids: [
-      // "652f3c2e4f1a2b3c4d5e6f7h"
+      "7452a86e7895abcd12345678",
+      "7452a86e7895abcd12345679",
+      "7452a86e7895abcd12345680",
+      "7452a86e7895abcd12345681",
+      "7452a86e7895abcd12345682",
+      "7452a86e7895abcd12345698",
+      "7452a86e7895abcd12345699",
     ],
     maps: [
       // {

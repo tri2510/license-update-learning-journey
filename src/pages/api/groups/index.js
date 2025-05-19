@@ -1,4 +1,5 @@
 import { PATHS } from "@/lib/mock_data/paths";
+import { ALL_COURSES } from "@/lib/mock_data/all_courses";
 
 let GROUPs = [
     {
@@ -21,8 +22,13 @@ let GROUPs = [
     }
 ]
 
+
+
 GROUPs.forEach(group => {
     group.paths = PATHS.filter(path => group.paths_slugs.includes(path.slug));
+    group.paths.forEach(path => {
+        path.courses = ALL_COURSES.filter(course => path.course_ids.includes(course._id));
+    });
 });
 
 export default async function handler(req, res) {

@@ -5,6 +5,7 @@ export const PATH0 = {
     "This guide accompanies the SDV101: Introduction to Software-Defined Vehicles course on Coursera, providing additional insights, explanations, and examples to support your learning journey",
   slug: "sdv-guide-sdv101",
   path_type: "standard",
+  level: "1",
   background_img: "/imgs/green_bg.png",
   image: "/imgs/sdv-guide-sdv101.jpeg",
   thumb: "/imgs/sdv-guide-sdv101.jpeg",

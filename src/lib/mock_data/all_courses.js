@@ -1,4 +1,8 @@
+import { COURSES as path3a_courses } from "@/lib/mock_data/path3a/courses.js" 
+import { COURSES as path3_courses } from "@/lib/mock_data/path3/courses.js" 
+import { COURSES as path2_5_courses } from "@/lib/mock_data/path2.5/courses.js" 
 import { COURSES as path2_courses } from "@/lib/mock_data/path2/courses.js" 
+import { COURSES as path1_courses } from "@/lib/mock_data/path1/courses.js"
 import { COURSES as path0_courses } from "@/lib/mock_data/path0/courses.js"
 
 const processCourse = (course) => {
@@ -37,6 +41,16 @@ const processCourse = (course) => {
 }
 
 processCourse(path0_courses)
+processCourse(path1_courses)
 processCourse(path2_courses)
+processCourse(path2_5_courses)
+processCourse(path3_courses)
+processCourse(path3a_courses)
 
-export const ALL_COURSES = [...path0_courses, ...path2_courses]
+export const ALL_COURSES = [
+    ...path0_courses, 
+    ...path1_courses, 
+    ...path2_courses, 
+    ...path2_5_courses, 
+    ...path3_courses, 
+    ...path3a_courses]

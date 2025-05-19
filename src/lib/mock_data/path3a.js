@@ -12,6 +12,7 @@ export const PATH3A = {
   valid_from: "2025-01-01T00:00:00.000Z",
   valid_to: "2026-01-01T00:00:00.000Z",
   state: "draft",
+  level: "3",
   configs: {
     setting1: "value1",
     setting2: true,
@@ -23,7 +24,11 @@ export const PATH3A = {
     secret: "hidden-information",
   },
   course_ids: [
-
+    "2452a86e7895abcd12345661",
+    "2452a86e7895abcd12345662",
+    "2452a86e7895abcd12345663",
+    "2452a86e7895abcd12345668",
+    "2452a86e7895abcd12345669",
   ],
   maps: [
     // {

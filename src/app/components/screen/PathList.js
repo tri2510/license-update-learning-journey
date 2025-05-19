@@ -2,6 +2,20 @@
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { BiSignal1, BiSignal2, BiSignal3, BiSignal4 } from "react-icons/bi";
+
+const PathLevel = ({path}) => {
+    return <div className="flex flex-row items-center justify-center mt-4 bg-black text-white font-semibold rounded-lg px-2 py-0.5">
+            <div className="relative w-8 h-4 mr-1">
+                {path?.level=="1" && <BiSignal1 size={26}  className="absolute top-[-7px] left-0 z-10 text-white"/>}
+                {path?.level=="2" && <BiSignal2 size={26}  className="absolute top-[-7px] left-0 z-10 text-white"/>}
+                {path?.level=="3" && <BiSignal3 size={26}  className="absolute top-[-7px] left-0 z-10 text-white"/>}
+                {path?.level=="4" && <BiSignal4 size={26}  className="absolute top-[-7px] left-0 z-10 text-white"/>}
+                <BiSignal4 size={26}  className="absolute top-[-7px] left-0 z-0 text-slate-400"/>
+            </div>
+            <div className="w-18 text-base ">Level-{path.level || "1"} </div>
+        </div>
+    }
 
 const PathList = ({paths, title, description}) => {
 
@@ -25,6 +39,10 @@ const PathList = ({paths, title, description}) => {
                                 <img src={path.thumb} 
                                     className="w-full h-[200px] object-cover rounded-t-xl hover:scale-110"/>
                                 <div className="grow px-4 pt-4 pb-2">
+                                    <div className="mb-2 text-left flex items-start justify-begin">
+                                        <PathLevel path={path}/>
+                                    </div>
+
                                     <div className="flex items-center justify-center mb-2">
                                         <div className="text-base h-[40px] xl:text-xl xl:h-[50px] 
                                                         line-clamp-2 font-semibold leading-tight text-black grow">
@@ -39,10 +57,15 @@ const PathList = ({paths, title, description}) => {
                                     <div className="flex items-center justify-center mt-4">
                                         <div className="w-18 text-base">Progress:</div>
                                         <div className="grow flex items-center">
-                                            {path.course_ids && path.course_ids.length > 0 && path.course_ids.map((c, cIndex) => <>
+                                            {path.courses && path.courses.length > 0 && path.courses.filter(c => c.type==='lesson').map((c, cIndex) => <>
                                                 { cIndex>0 && <div className="grow h-[2px] bg-black"></div> }
-                                                <div className="rounded-full w-4 h-4 border-black border-2 bg-white"></div>
-                                                
+                                                    { c.context?.state==='finished' && <div className="rounded-full w-4 h-4 border-black border-2 bg-black"></div> }
+                                                    { c.context?.state==='progress' && <div 
+                                                        className="rounded-full w-4 h-4 border-black border-2 flex">
+                                                            <div className="flex-1 bg-black"></div>
+                                                            <div className="flex-1"></div>
+                                                        </div> }
+                                                    { !['finished', 'progress'].includes(c.context?.state) && <div className="rounded-full w-4 h-4 border-black border-2 bg-white"></div> }
                                                 </>)}
                                         </div>
                                     </div>

@@ -13,6 +13,8 @@ const HomeContent = ({}) => {
                 const data = await response.json();
                 if (data && data.success) {
                     setItems(data.data)
+                    console.log("data.data")
+                    console.log(data.data)
                 } else {
                     setItems([])
                 }

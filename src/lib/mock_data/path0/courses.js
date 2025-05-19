@@ -6,6 +6,7 @@ export const COURSES = [
         description: "Overview",
         icon_name: "lesson-finished",
         state: "finished",
+        type: "lesson",
         context: {
             user_id: 'abc',
             state: 'finished'
@@ -21,6 +22,7 @@ export const COURSES = [
         description: "Part A: Essentials",
         icon_name: "lesson-finished",
         state: "finished",
+        type: "lesson",
         context: {
             user_id: 'abc',
             state: 'finished'
@@ -34,11 +36,12 @@ export const COURSES = [
         name: "Part B: Lessons Learned",
         shortDescription: "Part B: Lessons Learned",
         description: "Part B: Lessons Learned",
-        icon_name: "lesson-finished",
-        state: "finished",
+        icon_name: "lesson-inprogress",
+        state: "inprogress",
+        type: "lesson",
         context: {
             user_id: 'abc',
-            state: 'finished'
+            state: 'progress'
         },
         extends: {
             external_link: "https://www.sdv.guide/sdv101/part-b-lessons-learned",
@@ -49,11 +52,12 @@ export const COURSES = [
         name: "Part C: Building Blocks",
         shortDescription: "Part C: Building Blocks",
         description: "Part C: Building Blocks",
-        icon_name: "lesson-finished",
-        state: "finished",
+        icon_name: "lesson-ready",
+        state: "locked",
+        type: "lesson",
         context: {
             user_id: 'abc',
-            state: 'finished'
+            state: 'ready'
         },
         extends: {
             external_link: "https://www.sdv.guide/sdv101/part-c-building-blocks",
@@ -64,11 +68,12 @@ export const COURSES = [
         name: "Part D: Implementation Strategies",
         shortDescription: "Part D: Implementation Strategies",
         description: "Part D: Implementation Strategies",
-        icon_name: "lesson-finished",
-        state: "finished",
+        icon_name: "lesson-ready",
+        state: "locked",
+        type: "lesson",
         context: {
             user_id: 'abc',
-            state: 'finished'
+            state: 'ready'
         },
         extends: {
             external_link: "https://www.sdv.guide/sdv101/part-d-implementation-strategies",
@@ -81,6 +86,7 @@ export const COURSES = [
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
         icon_name: "certificate",
         state: "locked-highlight",
+        type: "award",
         context: {
             user_id: 'abc',
             state: 'ready'

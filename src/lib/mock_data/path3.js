@@ -12,6 +12,7 @@ export const PATH3 = {
   tags: ["onboard", "general", "playground", "beginner", "getting-started"],
   valid_from: "2025-01-01T00:00:00.000Z",
   valid_to: "2026-01-01T00:00:00.000Z",
+  level: "2",
   state: "draft",
   configs: {
     setting1: "value1",
@@ -24,7 +25,11 @@ export const PATH3 = {
     secret: "hidden-information",
   },
   course_ids: [
-
+    "1452a86e7895abcd12345661",
+    "1452a86e7895abcd12345662",
+    "1452a86e7895abcd12345663",
+    "1452a86e7895abcd12345668",
+    "1452a86e7895abcd12345669"
   ],
   maps: [
     // {

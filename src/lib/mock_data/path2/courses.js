@@ -6,6 +6,7 @@ export const COURSES = [
         description: "Provide a brief overview of the playground and its purpose. This course is designed to help you understand the basics of the playground and how to navigate through it.",
         icon_name: "lesson-finished",
         state: "finished",
+        type: "lesson",
         context: {
             user_id: 'abc',
             state: 'finished'
@@ -16,11 +17,12 @@ export const COURSES = [
         name: "Explore existing prototypes",
         shortDescription: "This course provides a walkthrough of existing demos.",
         description: "Via various demos, you will learn how to use the playground and its features.",
-        icon_name: "lesson-inprogress",
-        state: "inprogress",
+        icon_name: "lesson-finished",
+        state: "finished",
+        type: "lesson",
         context: {
             user_id: 'abc',
-            state: 'inprogress'
+            state: 'finished'
         }
     },
     {
@@ -28,11 +30,12 @@ export const COURSES = [
         name: "Register and login",
         shortDescription: "This course teaches you how to register and login.",
         description: "In this course you will learn how to register and login to the playground. You will also learn how to manage your profile.",
-        icon_name: "lesson-ready",
-        state: "locked",
+        icon_name: "lesson-finished",
+        state: "finished",
+        type: "lesson",
         context: {
             user_id: 'abc',
-            state: 'ready'
+            state: 'finished'
         },
     },
     {
@@ -40,11 +43,12 @@ export const COURSES = [
         name: "Vehicle Model and Vehicle API",
         shortDescription: "This course teaches you how to create a vehicle model.",
         description: "In this course your will learn how to create a vehicle model using the playground. You will learn about the different components of a vehicle model and how to use them effectively.",
-        icon_name: "lesson-ready",
-        state: "locked",
+        icon_name: "lesson-finished",
+        state: "finished",
+        type: "lesson",
         context: {
             user_id: 'abc',
-            state: 'ready'
+            state: 'finished'
         },
     },
     {
@@ -52,11 +56,12 @@ export const COURSES = [
         name: "Create your first prototype",
         shortDescription: "This course teaches you how to create a simple prototype.",
         description: "In this course you will learn how to create a prototype using the playground. You will learn about the different components of a prototype and how to use them effectively.",
-        icon_name: "lesson-ready",
-        state: "locked",
+        icon_name: "lesson-inprogress",
+        type: "lesson",
+        state: "inprogress",
         context: {
             user_id: 'abc',
-            state: 'ready'
+            state: 'progress'
         },
     },
     {
@@ -65,6 +70,7 @@ export const COURSES = [
         shortDescription: "This course teaches you how to create and manage your own API.",
         description: "In this course you will learn how to create and manage your own API using the playground. You will learn about the different components of an API and how to use them effectively.",
         icon_name: "lesson-ready",
+        type: "lesson",
         state: "locked",
         context: {
             user_id: 'abc',
@@ -77,6 +83,7 @@ export const COURSES = [
         shortDescription: "You are now ready to get your Vehicle API badge.",
         description: "Collect your Vehicle API badge and show it off to the world!",
         icon_name: "badge_1",
+        type: "award",
         state: "locked-highlight",
         context: {
             user_id: 'abc',
@@ -90,6 +97,7 @@ export const COURSES = [
         description: "In this course you will learn how to design a dashboard and run the demo. You will learn about the different components of a dashboard and how to use them effectively.",
         icon_name: "lesson-ready",
         state: "locked",
+        type: "lesson",
         context: {
             user_id: 'abc',
             state: 'ready'
@@ -102,6 +110,7 @@ export const COURSES = [
         description: "Create a prototype to get certificate",
         icon_name: "challenge",
         state: "locked-highlight",
+        type: "lesson",
         context: {
             user_id: 'abc',
             state: 'ready'
@@ -114,6 +123,7 @@ export const COURSES = [
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
         icon_name: "certificate",
         state: "locked-highlight",
+        type: "award",
         context: {
             user_id: 'abc',
             state: 'ready'
