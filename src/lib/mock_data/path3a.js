@@ -11,13 +11,13 @@ export const PATH3A = {
   tags: ["onboard", "general", "playground", "beginner", "getting-started"],
   valid_from: "2025-01-01T00:00:00.000Z",
   valid_to: "2026-01-01T00:00:00.000Z",
-  state: "draft",
+  state: "locked",
   level: "3",
   configs: {
     display_type: "list"
   },
   extends: {
-    extraField1: "extraValue1",
+    est_release_date: 'end of June'
   },
   hiddenContent: {
     secret: "hidden-information",

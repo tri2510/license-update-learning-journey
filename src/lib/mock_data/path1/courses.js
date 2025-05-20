@@ -9,7 +9,7 @@ export const COURSES = [
         type: "lesson",
         context: {
             user_id: 'abc',
-            state: 'ready'
+            state: 'finished'
         },
         extends: {
             external_link: "https://www.sdv.guide/sdv101",
@@ -37,9 +37,10 @@ export const COURSES = [
         shortDescription: "Verify your knowledge",
         description: "Verify your knowledge",
         icon_name: "lesson-ready",
+        image: "/imgs/final-test.jpg",
         top_icon: "/imgs/badge/practice.png",
         state: "locked",
-        type: "lesson",
+        type: "final-test",
         context: {
             user_id: 'abc',
             state: 'ready'
@@ -54,6 +55,7 @@ export const COURSES = [
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
         icon_name: "lesson-ready",
+        image: "/imgs/certification.jpg",
         top_icon: "/imgs/badge/quality-badge.png",
         state: "locked-highlight",
         type: "award",

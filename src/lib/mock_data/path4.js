@@ -24,6 +24,13 @@ export const PATH4 = {
     secret: "hidden-information",
   },
   course_ids: [
+    "3452a86e7895abcd12345678",
+    "3452a86e7895abcd12345679",
+    "3452a86e7895abcd12345680",
+    "3452a86e7895abcd12345681",
+    "3452a86e7895abcd12345682",
+    "3452a86e7895abcd12345683",
+    "3452a86e7895abcd12345684"
   ],
   maps: [
     // {

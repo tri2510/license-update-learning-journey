@@ -112,7 +112,7 @@ export const COURSES = [
         icon_name: "lesson-ready",
         top_icon: "/imgs/badge/practice.png",
         state: "locked-highlight",
-        type: "lesson",
+        type: "final-test",
         context: {
             user_id: 'abc',
             state: 'ready'

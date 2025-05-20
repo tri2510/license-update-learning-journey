@@ -86,7 +86,7 @@ export const COURSES = [
         description: "Verify your knowledge",
         icon_name: "lesson-ready",
         state: "locked",
-        type: "lesson",
+        type: "final-test",
         context: {
             user_id: 'abc',
             state: 'ready'

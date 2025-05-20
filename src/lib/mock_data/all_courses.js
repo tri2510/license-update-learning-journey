@@ -1,3 +1,4 @@
+import { COURSES as path5_courses } from "@/lib/mock_data/path5/courses.js" 
 import { COURSES as path3a_courses } from "@/lib/mock_data/path3a/courses.js" 
 import { COURSES as path3_courses } from "@/lib/mock_data/path3/courses.js" 
 import { COURSES as path2_5_courses } from "@/lib/mock_data/path2.5/courses.js" 
@@ -46,6 +47,7 @@ processCourse(path2_courses)
 processCourse(path2_5_courses)
 processCourse(path3_courses)
 processCourse(path3a_courses)
+processCourse(path5_courses)
 
 export const ALL_COURSES = [
     ...path0_courses, 
@@ -53,4 +55,5 @@ export const ALL_COURSES = [
     ...path2_courses, 
     ...path2_5_courses, 
     ...path3_courses, 
-    ...path3a_courses]
+    ...path3a_courses,
+    ...path5_courses]
