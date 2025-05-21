@@ -4,6 +4,7 @@ export const PATH3A = {
   description: "This courses show you how to develop, testing, deploy and publish a widget.",
   slug: "widget-development",
   path_type: "standard",
+  time_to_complete: 6,
   background_img: "/imgs/green_bg.png",
   image: "/imgs/widget.png",
   thumb: "/imgs/widget.png",
@@ -38,4 +39,21 @@ export const PATH3A = {
   ],
   createdAt: "2024-07-19T14:00:00.000Z",
   updatedAt: "2024-07-19T14:00:00.000Z",
+  created_by: "digital.auto",
+  num_learners: 0,
+  num_certified_learners: 0,
+  key_points: [
+    {
+      title: 'What will I learn?',
+      content: `TBD`,
+    },
+    {
+      title: 'What will I learn?',
+      content: `TBD`,
+    },
+    {
+      title: 'What do I need?',
+      content: `TBD`,
+    },
+  ]
 }

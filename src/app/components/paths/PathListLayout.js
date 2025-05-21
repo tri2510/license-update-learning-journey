@@ -1,63 +1,15 @@
 'use client'
 
-import { TfiHome } from "react-icons/tfi";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { MdCheckBoxOutlineBlank, MdLock, MdOutlineCheckBox } from "react-icons/md"
 import { IoCheckbox } from "react-icons/io5";
-import { useState } from "react"
-import { IoArrowBack } from "react-icons/io5";
 import { PiCertificateBold } from "react-icons/pi";
 import { MdOutlineExplore, MdOutlineChecklist } from "react-icons/md";
 
-const InfoGroup = ({title, content}) => {
-    const [collapsed, setCollapsed] = useState(true)
 
-    return <div className="border-b border-slate-200">
-        <div className="mt-1 flex items-center">
-            <div className="grow text-lg font-semibold text-gray-800 cursor-pointer"
-                onClick={() => {
-                    setCollapsed((v) => !v)
-                }}>{title}</div>
-            { collapsed && <IoIosArrowDown size={20} 
-                onClick={() => {setCollapsed(false)}} 
-                className="text-gray-800 cursor-pointer hover:opacity-70"/> }
-            { !collapsed && <IoIosArrowUp size={20} 
-                onClick={() => {setCollapsed(true)}} 
-                className="text-gray-800 cursor-pointer hover:opacity-70"/> }
-        </div>
-        { !collapsed && <div className="mt-0 text-sm text-slate-700 min-h-[30px]">{content}</div> }
 
-    </div>
-}
-
-const PathListScreen = ({path}) => {
-    const router = useRouter();
+const PathListLayout = ({path}) => {
 
     return <div className="w-full">
-        {/* Title block */}
-        <div className="px-4 py-4 sm:px-8 sm-py-8">
-            <div className="flex items-center my-2">
-                <IoArrowBack size={28} className="cursor-pointer hover:scale-120 mr-4 text-black" onClick={() => { router.back() }}/>
-                <div className="text-gray-950 text-xl md:text-3xl font-semibold grow">{path.name}</div>
-                <div className="min-w-8 h-8"></div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="mt-4 pl-0 pr-4 py-2">
-                    <div className="leading-tight text-md md:text-[16px] text-gray-800">{path.description}</div>
-                </div>
-                
-                <div className="mt-4 max-w-[600px]">
-                    <InfoGroup title="What will I learn?" content="TBD"/>
-                    <InfoGroup title="What do I need to know?" content="TBD"/>
-                    <InfoGroup title="What do I need?" content="TBD"/>
-                </div>
-            </div>
-
-        </div>
-
         <div className="mt-4 bg-slate-200 min-h-[800px] flex flex-col justify-begin items-center px-4 py-8">
             <div className="max-w-[780px] w-full flex flex-col items-center">
             
@@ -146,4 +98,4 @@ const PathListScreen = ({path}) => {
     </div>
 }
 
-export default PathListScreen;
+export default PathListLayout;

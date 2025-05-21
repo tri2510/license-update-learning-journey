@@ -8,8 +8,8 @@ import { PATH4 } from "./path4.js";
 import { PATH5 } from "./path5.js";
 
 export const PATHS = [
-  PATH0,
   PATH1,
+  PATH0,
   PATH2,
   PATH2_5,
   PATH3,

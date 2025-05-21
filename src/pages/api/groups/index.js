@@ -5,7 +5,7 @@ let GROUPs = [
     {
         name: 'Theory',
         description: 'Theory of software-defined vehicles',
-        paths_slugs: ['sdv-guide-sdv101', 'sdv-101', 'pulse-framework'],
+        paths_slugs: ['sdv-101', 'sdv-guide-sdv101', 'pulse-framework'],
         paths: []
     },
     {

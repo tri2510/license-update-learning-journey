@@ -5,6 +5,7 @@ export const PATH4 = {
     "This path provides a step-by-step guide for getting started with dreamKIT. How to familiar with hardware and how to deploy your first app to the dreamKIT.",
   slug: "dreamkit-getting-started",
   path_type: "standard",
+  time_to_complete: 6,
   background_img: "/imgs/green_bg.png",
   image: "/imgs/dreamKit.png",
   thumb: "/imgs/dreamKit.png",
@@ -41,4 +42,21 @@ export const PATH4 = {
   ],
   createdAt: "2024-07-19T14:00:00.000Z",
   updatedAt: "2024-07-19T14:00:00.000Z",
+  created_by: "digital.auto",
+  num_learners: 14,
+  num_certified_learners: 8,
+  key_points: [
+    {
+      title: 'What will I learn?',
+      content: `TBD`,
+    },
+    {
+      title: 'What will I learn?',
+      content: `TBD`,
+    },
+    {
+      title: 'What do I need?',
+      content: `TBD`,
+    },
+  ]
 }

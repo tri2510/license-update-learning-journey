@@ -5,6 +5,7 @@ export const PATH3 = {
     "This path provides a step-by-step guide for creating an SDV-Runtime and leveraging its advantages to accelerate your learning.",
   slug: "sdv-runtime-getting-started",
   path_type: "standard",
+  time_to_complete: 4,
   background_img: "/imgs/green_bg.png",
   image: "/imgs/sdv-runtime.png",
   thumb: "/imgs/sdv-runtime.png",
@@ -39,4 +40,21 @@ export const PATH3 = {
   ],
   createdAt: "2024-07-19T14:00:00.000Z",
   updatedAt: "2024-07-19T14:00:00.000Z",
+  created_by: "digital.auto",
+  num_learners: 20,
+  num_certified_learners: 12,
+  key_points: [
+    {
+      title: 'What will I learn?',
+      content: `TBD`,
+    },
+    {
+      title: 'What will I learn?',
+      content: `TBD`,
+    },
+    {
+      title: 'What do I need?',
+      content: `TBD`,
+    },
+  ]
 }
