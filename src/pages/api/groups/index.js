@@ -3,8 +3,8 @@ import { ALL_COURSES } from "@/lib/mock_data/all_courses";
 
 let GROUPs = [
     {
-        name: 'Theory',
-        description: 'Theory of software-defined vehicles',
+        name: 'Theory & Methods',
+        description: 'Fundamental theory, key concepts, and methodologies shaping software-defined vehicles',
         paths_slugs: ['sdv-101', 'sdv-guide-sdv101', 'pulse-framework'],
         paths: []
     },
@@ -18,7 +18,8 @@ let GROUPs = [
         name: 'dreamKIT',
         description: 'Bring your ideas to life with dreamKIT',
         paths_slugs: ['dreamkit-getting-started', 'dreampack-getting-started'],
-        paths: []
+        paths: [],
+        titleTag: "dreamkit"
     }
 ]
 

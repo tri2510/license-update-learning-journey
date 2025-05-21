@@ -98,16 +98,17 @@ export const COURSES = [
     },
     {
         _id: "6452a86e7895abcd12345684", // Random MongoDB ObjectId
-        name: "Get Certificate",
+        name: "Certificate",
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
         icon_name: "lesson-ready",
         top_icon: "/imgs/badge/quality-badge.png",
+        image: "/imgs/cert/cert_101_introduction.png",
         state: "locked-highlight",
         type: "award",
         context: {
             user_id: 'abc',
-            state: 'ready'
+            state: 'finished'
         },
     }
 ];

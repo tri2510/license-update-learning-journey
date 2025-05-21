@@ -13,8 +13,6 @@ const HomeContent = ({}) => {
                 const data = await response.json();
                 if (data && data.success) {
                     setItems(data.data)
-                    console.log("data.data")
-                    console.log(data.data)
                 } else {
                     setItems([])
                 }
@@ -35,9 +33,9 @@ const HomeContent = ({}) => {
                 </div>
             </div>
 
-            {items.map((group, index) => (
-                <div key={index} className="my-4">
-                    <PathList paths={group.paths} title={group.name} description={group.description}/>
+            {items.map((group, gIndex) => (
+                <div key={gIndex} className="my-4">
+                    <PathList paths={group.paths} title={group.name} description={group.description} titleTag={group.titleTag}/>
                 </div>
             ))}
         </div>

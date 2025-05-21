@@ -5,12 +5,12 @@ export const COURSES = [
         shortDescription: "Introduction",
         description: "Introduction",
         icon_name: "lesson-finished",
-        state: "finished",
+        state: "locked",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
             user_id: 'abc',
-            state: 'finished'
+            state: 'ready'
         },
         extends: {
         },
@@ -21,12 +21,12 @@ export const COURSES = [
         shortDescription: "Component and interfaces",
         description: "Component and interfaces",
         icon_name: "lesson-finished",
-        state: "finished",
+        state: "locked",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
             user_id: 'abc',
-            state: 'finished'
+            state: 'ready'
         },
         extends: {
         },
@@ -37,28 +37,28 @@ export const COURSES = [
         shortDescription: "IVI and Marketplace",
         description: "IVI and Marketplace",
         icon_name: "lesson-finished",
-        state: "finished",
+        state: "locked",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
             user_id: 'abc',
-            state: 'finished'
+            state: 'ready'
         },
         extends: {
         },
     },
     {
         _id: "3452a86e7895abcd12345681", // Random MongoDB ObjectId
-        name: "Work with digital.auto playground",
+        name: "Deploy from digital.auto playground",
         shortDescription: "Work with digital.auto playground",
         description: "Work with digital.auto playground",
         icon_name: "lesson-inprogress",
-        state: "inprogress",
+        state: "locked",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
             user_id: 'abc',
-            state: 'progress'
+            state: 'ready'
         },
         extends: {
         },

@@ -66,10 +66,12 @@ export default async function Home() {
               <div className="text-[#46499E] font-bold px-4 py-1">I want to plan a hackathon</div>
             </div>
 
-            <div className="flex-1 rounded-lg bg-white flex flex-col items-center justify-center px-2 py-2 cursor-pointer hover:scale-105">
-              <img className="h-28" src="/imgs/dreamKit.png" />
-              <div className="text-[#46499E] font-bold px-4 py-1">I want to work with dreamKIT</div>
-            </div>
+            <a href="#dreamkit">
+              <div className="flex-1 rounded-lg bg-white flex flex-col items-center justify-center px-2 py-2 cursor-pointer hover:scale-105">
+                <img className="h-28" src="/imgs/dreamKit.png" />
+                <div className="text-[#46499E] font-bold px-4 py-1">I want to work with dreamKIT</div>
+              </div>
+            </a>
           </div>
         </div>
 

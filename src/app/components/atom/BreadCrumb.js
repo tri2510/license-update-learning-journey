@@ -11,7 +11,7 @@ import Link from "next/link";
 const BreadCrumb = async ({ items }) => {
 
     let config = {
-        "HOME_LABEL": "Your Journey"
+        "HOME_LABEL": "Home"
     }
 
     try {
@@ -33,7 +33,7 @@ const BreadCrumb = async ({ items }) => {
     return (
         <div className="px-4 py-1 w-full flex flex-row items-center text-white text-sm font-semibold bg-[#58823C]">
             <div className="flex flex-row items-center">
-                <Link href="/" className="hover:underline">{(config && config["HOME_LABEL"]) || 'Your Journey'}</Link>
+                <Link href="/" className="hover:underline">{(config && config["HOME_LABEL"]) || 'Home'}</Link>
                 {items && items.map((item, index) => (
                     <div key={index} className="flex flex-row items-center">
                         <span className="mx-2">/</span>

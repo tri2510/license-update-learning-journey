@@ -46,15 +46,15 @@ export const PATH3 = {
   key_points: [
     {
       title: 'What will I learn?',
-      content: `TBD`,
+      content: `How to create an SDV-Runtime and leverage its advantages to accelerate your learning. You will learn how to set up the environment, run the SDV-Runtime, and use it to develop and test your applications. You will also learn how to create different kind of Vehicle API, create provider for a Vehicle signal.`,
     },
     {
-      title: 'What will I learn?',
-      content: `TBD`,
+      title: 'What do I need to know?',
+      content: `You should be familiar with the basics of Docker, such as how to run containers. You should also have a basic understanding of Python programming, including how to write and run Python scripts. Besides, you should have a basic understanding of SDV and its components. Familiarity with Vehicle API, COVESA, Kuksa. Lastly, you must know how to use the command line interface (CLI) to run commands and manage files.`,
     },
     {
       title: 'What do I need?',
-      content: `TBD`,
+      content: `A Windows, Linux, or Raspberry Pi computer with Docker installed and internet connection.`,  
     },
   ]
 }

@@ -48,15 +48,15 @@ export const PATH4 = {
   key_points: [
     {
       title: 'What will I learn?',
-      content: `TBD`,
+      content: ` You will learn how to set up the environment, run the dreamKIT, and use it to develop and test your applications. You will also learn how to install app from marketplace, enable/disable app, and how to use the config dreamKIT via IVI and CLI.`,
     },
     {
-      title: 'What will I learn?',
-      content: `TBD`,
+      title: 'What do I need to know?',
+      content: `You must familiar with the basics of Docker, such as how to run containers. You must know how to use the command line interface (CLI) to run commands and manage files. A solid understanding about Linux OS. You should also have a basic understanding of SDV and its components. Familiarity with Vehicle API, COVESA, Kuksa.`,
     },
     {
       title: 'What do I need?',
-      content: `TBD`,
+      content: `A dreamKIT device with internet connection. A Windows or Linux computer with  internet connection. VSCode or any other code editor.`,
     },
   ]
 }

@@ -1,6 +1,7 @@
 import PathScreen from "@/app/components/screen/PathScreen"
 import { notFound } from 'next/navigation'
 import { fetchPathBySlug } from "@/lib/utils/consume_apis/api_path"
+import BreadCrumb from "@/app/components/atom/BreadCrumb"
 
 const Page =  async ({params}) => {
 
@@ -24,8 +25,11 @@ const Page =  async ({params}) => {
     return (
       <div
         className="bg-slate-100 text-slate-600 text-2xl p-1
-            h-full w-full grid place-items-center"
+            h-full w-full flex flex-col"
       >
+        <BreadCrumb items={[
+          { label: curPath.name, link: `/path/${curPath.slug}` },
+        ]} />
         <PathScreen path={curPath}/>
       </div>
     )

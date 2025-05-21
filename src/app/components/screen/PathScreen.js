@@ -46,8 +46,8 @@ const PathScreen = ({ path }) => {
       {/* Title block */}
       <div className="py-4 sm:py-4 px-2 lg:px-4">
         <div className="flex items-center my-2">
-          <IoArrowBack size={28} className="cursor-pointer hover:scale-120 mr-4 text-black" 
-              onClick={() => { router.back() }} />
+          {/* <IoArrowBack size={28} className="cursor-pointer hover:scale-120 mr-4 text-black" 
+              onClick={() => { router.back() }} /> */}
           <div className="text-gray-950 text-xl md:text-3xl font-semibold grow">{path.name}</div>
           <div className="min-w-8 h-8"></div>
         </div>
