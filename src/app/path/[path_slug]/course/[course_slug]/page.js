@@ -15,7 +15,10 @@ const Page = async  ({params}) => {
 
   try {
     dbPath = await fetchPathBySlug(path_slug);
-    dbCourse = await fetchCourseBySlug(course_slug);
+    if(dbPath.courses) {
+      dbCourse = dbPath.courses.find((c) => c.slug == course_slug)
+    }
+    // dbCourse = await fetchCourseBySlug(course_slug);
   } catch(err) {
     console.log(err)
   }
