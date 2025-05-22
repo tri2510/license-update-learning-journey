@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { MdOutlineQuiz } from "react-icons/md";
+import { GoVideo } from "react-icons/go";
+import { SlNotebook } from "react-icons/sl";
 import QuizLesson from '../lessons/QuizLesson';
+import VideoLesson from '../lessons/VideoLesson';
+import TextMarkdownLesson from '../lessons/TextMarkdownLesson';
+
 
 const LessonListItem = ({ lesson, isActive, onActive}) => {
     return <div
@@ -15,7 +20,9 @@ const LessonListItem = ({ lesson, isActive, onActive}) => {
             }
         }}>
         <div className='w-16 min-w-16 h-16 bg-gray-200 rounded grid place-items-center'>
-            {lesson.type === 'quiz' && <MdOutlineQuiz size={32} className='text-slate-800]' />}
+            {lesson.type === 'quiz' && <MdOutlineQuiz size={34} className='text-slate-800]' />}
+            {lesson.type === 'video' && <GoVideo size={36} className='text-slate-800]' />}
+            {lesson.type === 'text-markdown' && <SlNotebook size={36} className='text-slate-800]' />}
         </div>
         <div className='grow pl-2 py-0'>
             <div className='font-bold text-black text-base'>{lesson.name}</div>
@@ -69,6 +76,8 @@ const CourseScreen = ({ course }) => {
             <div className='grow border border-slate-200 px-2 rounded bg-white min-h-[80vh]'>
                 { activeLesson && <>
                     { activeLesson.type === 'quiz' && <QuizLesson lesson={activeLesson}/>}
+                    { activeLesson.type === 'video' && <VideoLesson lesson={activeLesson}/>}
+                    { activeLesson.type === 'text-markdown' && <TextMarkdownLesson lesson={activeLesson}/>}
                 </> }
             </div>
         </div>

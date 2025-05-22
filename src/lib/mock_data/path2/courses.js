@@ -1,3 +1,6 @@
+import { welcome_lessons } from "./welcome_lesson"
+import { explorer_lessons } from './explore_prototype'
+
 export const COURSES = [
     {
         _id: "652f3c2e4f1a2b3c4d5e6f7h", // Random MongoDB ObjectId
@@ -7,6 +10,7 @@ export const COURSES = [
         icon_name: "lesson-finished",
         state: "finished",
         type: "lesson",
+        lessons: welcome_lessons,
         context: {
             user_id: 'abc',
             state: 'finished'
@@ -20,6 +24,7 @@ export const COURSES = [
         icon_name: "lesson-finished",
         state: "finished",
         type: "lesson",
+        lessons: explorer_lessons,
         context: {
             user_id: 'abc',
             state: 'finished'
