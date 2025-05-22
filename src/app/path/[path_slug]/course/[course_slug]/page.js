@@ -3,11 +3,11 @@ import BreadCrumb from "@/app/components/atom/BreadCrumb"
 import { notFound } from 'next/navigation'
 import { fetchPathBySlug } from "@/lib/utils/consume_apis/api_path"
 import { fetchCourseBySlug } from "@/lib/utils/consume_apis/api_course"
-import CourseIntroScreen from "@/app/components/screen/CourseIntroScreen"
+import CourseScreen from "@/app/components/screen/CourseScreen"
 
 const Page = async  ({params}) => {
 
-  const { path_slug, course_slug } = params;
+  const { path_slug, course_slug } = await params;
   if(!path_slug || !course_slug) notFound()
 
   let dbPath = null
@@ -34,7 +34,9 @@ const Page = async  ({params}) => {
         ]} />
 
       <div className="w-full mt-4 px-4 flex flex-col">
-        <CourseIntroScreen course={dbCourse}/>
+          <div className="w-full px-2 lg:px-4">
+              <CourseScreen course={dbCourse}/>
+          </div>
       </div>
     </div>
   );

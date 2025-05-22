@@ -11,6 +11,7 @@ import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 
 const CourseBlock = ({ path, course, index }) => {
+    const router = useRouter();
     const [showCert, setShowCert] = useState(false)
 
     if(!path || !course) return <></>
@@ -117,7 +118,7 @@ const CourseBlock = ({ path, course, index }) => {
                                     window.open(course.extends?.external_link, '_blank')
                                     return
                                 }
-                                router.push(`/path/${path.slug}/${course._id}`)
+                                router.push(`/path/${path.slug}/course/${course.slug}`)
                             }}>
                             {course?.context?.state !== 'finished' ? 'Start' : 'Revisit'}
                         </div>}

@@ -1,3 +1,5 @@
+import {LESSONS as TEST_A } from "./test_a"
+
 export const COURSES = [
     // {
     //     _id: "6452a86e7895abcd12345661", // Random MongoDB ObjectId
@@ -18,8 +20,8 @@ export const COURSES = [
     {
         _id: "6452a86e7895abcd12345662", // Random MongoDB ObjectId
         name: "Video lessons: Cousera",
-        shortDescription: "View lessons on Coursera.",
-        description: "View lessons on Coursera.",
+        shortDescription: "[External Material] View lessons on Coursera.",
+        description: "[External Material] View lessons on Coursera.",
         icon_name: "lesson-ready",
         state: "locked",
         type: "lesson",
@@ -39,12 +41,13 @@ export const COURSES = [
         icon_name: "lesson-ready",
         image: "/imgs/final-test.jpg",
         top_icon: "/imgs/badge/practice.png",
-        state: "locked",
+        state: "released",
         type: "final-test",
         context: {
             user_id: 'abc',
             state: 'finished'
         },
+        lessons: TEST_A,
         extends: {
             // external_link: "https://www.sdv.guide/sdv101/part-a-essentials",
         },
