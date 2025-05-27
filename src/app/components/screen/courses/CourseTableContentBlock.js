@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { RiVideoLine } from "react-icons/ri";
@@ -37,17 +38,20 @@ const CourseTableContentBlock= ({course}) => {
 
     return <div>
         {course.lessons.map((lesson, index) => (
-            <div key={index} className='mt-3 pl-2 pr-2 py-2 flex items-start border-2 border-gray-400 rounded-xl'>
-                <LessonIcon lessonType={lesson.lesson_type} forceIcon={lesson.icon} />
-                <div className='flex flex-col pl-4 pr-2 space-x-2 text-slate-800 text-base leading-tight'>
-                    <div className='font-semibold'>{`${index+1}`}. {lesson.name}</div>
-                    <div className='mt-1 flex flex-row'>
-                        <div className='line-clamp-1 text-sm italic text-slate-500'>
-                            {lesson.shortDescription}
+            <Link href={window.location.href || `${window.location.href}/lesson/${lesson.slug}`} key={index}>
+                <div className='mt-3 pl-2 pr-2 py-2 flex items-start border-2 border-gray-400 rounded-xl
+                    hover:border-black hover:opacity-80 cursor-pointer'>
+                    <LessonIcon lessonType={lesson.lesson_type} forceIcon={lesson.icon} />
+                    <div className='flex flex-col pl-4 pr-2 space-x-2 text-slate-800 text-base leading-tight'>
+                        <div className='font-semibold'>{`${index+1}`}. {lesson.name}</div>
+                        <div className='mt-1 flex flex-row'>
+                            <div className='line-clamp-1 text-sm italic text-slate-500'>
+                                {lesson.shortDescription}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Link>
         ))}
     </div>
 }

@@ -1,3 +1,17 @@
+async function fetchPaths() {
+    try {
+        const response = (await fetch("/api/paths"))
+        const data = await response.json();
+        if (data && data.success) {
+            return data.data
+        } else {
+            throw ('Paths not found')
+        }
+    } catch (error) {
+        return []
+    }
+}
+
 async function fetchPathBySlug(slug) {
     if (!slug) throw ('Invalid post slug');
     try {
@@ -14,4 +28,4 @@ async function fetchPathBySlug(slug) {
     }
 }
 
-export { fetchPathBySlug }
+export { fetchPathBySlug, fetchPaths }

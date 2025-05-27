@@ -1,5 +1,5 @@
 import connectToDatabase from "@/lib/mongodb";
-import { COURSES } from "@/lib/mock_data/courses";
+import { ALL_COURSES } from "@/lib/mock_data/all_courses";
 import { ICONs } from "@/lib/mock_data/media";
 import { PATHS } from "@/lib/mock_data/paths";
 
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         }
 
         try {
-          dbPath.courses = COURSES.filter((course) =>
+          dbPath.courses = ALL_COURSES.filter((course) =>
             dbPath.course_ids.includes(course._id)
           );
 
