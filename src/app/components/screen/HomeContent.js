@@ -9,7 +9,7 @@ const HomeContent = ({}) => {
     useEffect(()=> {
         const fetchPaths = async () => {
             try {
-                const response = await fetch("/api/groups")
+                const response = await fetch("/api/collections")
                 const data = await response.json();
                 if (data && data.success) {
                     setItems(data.data)
@@ -33,9 +33,9 @@ const HomeContent = ({}) => {
                 </div>
             </div>
 
-            {items.map((group, gIndex) => (
+            {items.map((collection, gIndex) => (
                 <div key={gIndex} className="my-4">
-                    <PathList paths={group.paths} title={group.name} description={group.description} titleTag={group.titleTag}/>
+                    <PathList paths={collection.paths} title={collection.name} description={collection.description} titleTag={collection.titleTag}/>
                 </div>
             ))}
         </div>

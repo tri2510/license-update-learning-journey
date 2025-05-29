@@ -1,7 +1,7 @@
 import { PATHS } from "@/lib/mock_data/paths";
 import { ALL_COURSES } from "@/lib/mock_data/all_courses";
 
-let GROUPs = [
+let COLLECTIONs = [
     {
         name: 'Theory & Methods',
         description: 'Fundamental theory, key concepts, and methodologies shaping software-defined vehicles',
@@ -25,9 +25,9 @@ let GROUPs = [
 
 
 
-GROUPs.forEach(group => {
-    group.paths = PATHS.filter(path => group.paths_slugs.includes(path.slug));
-    group.paths.forEach(path => {
+COLLECTIONs.forEach(collection => {
+    collection.paths = PATHS.filter(path => collection.paths_slugs.includes(path.slug));
+    collection.paths.forEach(path => {
         path.courses = ALL_COURSES.filter(course => path.course_ids.includes(course._id));
     });
 });
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        res.status(200).json({ success: true, data: GROUPs });
+        res.status(200).json({ success: true, data: COLLECTIONs });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
