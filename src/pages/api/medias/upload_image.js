@@ -13,7 +13,7 @@ export const config = {
 };
 
 const MEDIA_STORE_PATH = (process.env.MEDIA_STORE_PATH || '/tmp/media_store') + '/images';
-const HOST = process.env.HOST || 'http://localhost:3000';
+const APP_DOMAIN = process.env.APP_DOMAIN || 'http://localhost:3000';
 
 async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -112,9 +112,9 @@ async function handler(req, res) {
                 })
                 .toFile(thumbPath);
 
-            // Construct public URL (assuming /media/ is mapped to MEDIA_STORE_PATH)
-            const publicUrl = `${HOST}/images/${uniqueName}`;
-            const publicThumbUrl = `${HOST}/images/${thumbName}`;
+            // Construct public URL (assuming /images/ is mapped to MEDIA_STORE_PATH)
+            const publicUrl = `/images/${uniqueName}`;
+            const publicThumbUrl = `/images/${thumbName}`;
 
             res.status(200).json({
                 success: true,

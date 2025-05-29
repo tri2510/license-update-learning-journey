@@ -3,7 +3,7 @@ import { explorer_lessons } from './explore_prototype'
 
 export const COURSES = [
     {
-        _id: "652f3c2e4f1a2b3c4d5e6f7h", // Random MongoDB ObjectId
+        _id: "652f3c2e4f1a2b3c4d5e6f7c", // Random MongoDB ObjectId
         name: "Welcome to the playground",
         shortDescription: "Playground overview, concept, purpose and target audience.",
         description: "Provide a brief overview of the playground and its purpose. This course is designed to help you understand the basics of the playground and how to navigate through it.",
@@ -17,7 +17,7 @@ export const COURSES = [
         },
     },
     {
-        _id: "652f3c2e4f1a2b3c4d5e6f8h", // Random MongoDB ObjectId
+        _id: "b", // Random MongoDB ObjectId
         name: "Explore existing prototypes",
         shortDescription: "This course provides a walkthrough of existing demos.",
         description: "Via various demos, you will learn how to use the playground and its features.",
@@ -31,7 +31,7 @@ export const COURSES = [
         }
     },
     {
-        _id: "652f3c2e4f1a2b3c4d5e6f9i", // Random MongoDB ObjectId
+        _id: "652f3c2e4f1a2b3c4d5e6f9a", // Random MongoDB ObjectId
         name: "Register and login",
         shortDescription: "This course teaches you how to register and login.",
         description: "In this course you will learn how to register and login to the playground. You will also learn how to manage your profile.",

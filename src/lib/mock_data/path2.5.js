@@ -34,7 +34,7 @@ export const PATH2_5 = {
   ],
   maps: [
     // {
-    //     course_id: "652f3c2e4f1a2b3c4d5e6f7h",
+    //     course_id: "652f3c2e4f1a2b3c4d5e6f7c",
     //     x: "6%",
     //     y: "45%"
     // }

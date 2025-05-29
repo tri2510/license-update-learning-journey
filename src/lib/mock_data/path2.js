@@ -25,9 +25,9 @@ export const PATH2 = {
       secret: "hidden-information",
     },
     course_ids: [
-      "652f3c2e4f1a2b3c4d5e6f7h",
-      "652f3c2e4f1a2b3c4d5e6f8h",
-      "652f3c2e4f1a2b3c4d5e6f9i",
+      "652f3c2e4f1a2b3c4d5e6f7c",
+      "652f3c2e4f1a2b3c4d5e6f8b",
+      "652f3c2e4f1a2b3c4d5e6f9a",
       "507f1f77bcf86cd799439011",
       "507f1f77bcf86cd799439012",
       "507f1f77bcf86cd799439013",
@@ -37,17 +37,17 @@ export const PATH2 = {
     ],
     maps: [
       {
-          course_id: "652f3c2e4f1a2b3c4d5e6f7h",
+          course_id: "652f3c2e4f1a2b3c4d5e6f7c",
           x: "6%",
           y: "41%"
       },
       {
-          course_id: "652f3c2e4f1a2b3c4d5e6f8h",
+          course_id: "652f3c2e4f1a2b3c4d5e6f8b",
           x: "19%",
           y: "36%"
       },
       {
-        course_id: "652f3c2e4f1a2b3c4d5e6f9i",
+        course_id: "652f3c2e4f1a2b3c4d5e6f9a",
         x: "30%",
         y: "46%"
       },
