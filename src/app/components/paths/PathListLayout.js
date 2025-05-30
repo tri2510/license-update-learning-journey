@@ -9,6 +9,150 @@ import CertificateScreen from "../atom/CertificateScreen";
 import { useState } from "react";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
+import BtnFullRounded from "../atom/BtnFullRounded";
+
+
+const saveStateLessonFinish = async (course, lesson_id) => {
+    if(!course || !course._id || !lesson_id) return null
+    try {
+
+        let payload = payload = course.progress || {
+            course_id: course._id,
+            state: "not_started",
+            data: {},
+            lessons: {}
+        }
+
+        if(payload.lessons) {
+            let lessonProgress = payload.lessons[lesson_id] || { started_at: new Date(), records: []}
+            lessonProgress.records.push({
+                at: new Date(),
+                action: 'complete_lesson',
+            })
+            lessonProgress.updated_at = new Date()
+            lessonProgress.progress = "completed"
+        }
+
+        const res = await fetch(`/api/progress/courses/${course_id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.error || "Failed to update lesson state");
+        }
+        return await res.json();
+    } catch (err) {
+        console.error("Error saving lesson finish state:", err);
+        return null;
+    }
+}
+
+const saveStateLessonStarted = async (course, lesson_id) => {
+    if(!course || !course._id || !lesson_id) return null
+    try {
+
+        let payload = payload = course.progress || {
+            course_id: course._id,
+            state: "not_started",
+            data: {},
+            lessons: {}
+        }
+
+        if(payload.lessons) {
+            let lessonProgress = payload.lessons[lesson_id] || { started_at: new Date(), records: []}
+            lessonProgress.records.push({
+                at: new Date(),
+                action: 'start_lesson',
+            })
+            lessonProgress.updated_at = new Date()
+            lessonProgress.progress = "in_progress"
+        }
+
+        const res = await fetch(`/api/progress/courses/${course._id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.error || "Failed to update lesson state");
+        }
+        return await res.json();
+    } catch (err) {
+        console.error("Error saving lesson finish state:", err);
+        return null;
+    }
+}
+
+const saveStateCourseStarted = async (course) => {
+    if(!course || !course._id) return null
+    try {
+
+        let payload = course.progress || {
+            course_id: course._id,
+            data: {},
+            lessons: {}
+        }
+
+        course.state = "in_progress"
+
+        const res = await fetch(`/api/progress/courses/${course._id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.error || "Failed to update lesson state");
+        }
+        return await res.json();
+    } catch (err) {
+        console.error("Error saving lesson finish state:", err);
+        return null;
+    }
+}
+
+
+const LaunchCourseBtn = ({course}) => {
+    const router = useRouter();
+
+    const launchCourse = () => {
+        if (course.extends?.external_link) {
+            window.open(course.extends?.external_link, '_blank')
+            return
+        }
+        router.push(`/path/${path.slug}/course/${course.slug}`)
+    }
+
+    return <>   <div className="text-xs">{course?.context?.state }</div>
+        { (!course?.context?.state  || course?.context?.state == 'not_started') && <BtnFullRounded
+            onClick={() => { 
+                saveStateCourseStarted(course, lesson)
+                launchCourse()
+            }}
+            >Start</BtnFullRounded>}
+
+        { course?.context?.state == 'in_progress' && <BtnFullRounded
+            onClicked={() => { 
+                launchCourse()
+            }}
+            >Continue</BtnFullRounded>}
+
+        { course?.context?.state == 'completed' && <BtnFullRounded
+            onClicked={() => { 
+                launchCourse()
+            }}
+        >Revisit</BtnFullRounded>}
+    </>
+}
 
 const CourseBlock = ({ path, course, index }) => {
     const router = useRouter();
@@ -62,6 +206,7 @@ const CourseBlock = ({ path, course, index }) => {
                 </div>
                 <div className="ml-2 text-xl md:text-2xl font-semibold text-gray-900">{course.name}</div>
             </div>
+
             <div className="grow grid grid-cols-2 min-h-[120px] ">
                 <div className="px-4 pt-2 pb-4 flex flex-col">
                     <div className="grow text-base text-gray-800">
@@ -111,17 +256,8 @@ const CourseBlock = ({ path, course, index }) => {
 
                             { showCert && <CertificateScreen image={course.image} requestClose={() => { setShowCert(false) }} /> }
                         </>}
-                        {["lesson", "final-test"].includes(course.type) && <div className="bg-black rounded-full px-6 py-2 text-lg font-bold text-white w-fit
-                                        cursor-pointer hover:scale-110"
-                            onClick={() => {
-                                if (course.extends?.external_link) {
-                                    window.open(course.extends?.external_link, '_blank')
-                                    return
-                                }
-                                router.push(`/path/${path.slug}/course/${course.slug}`)
-                            }}>
-                            {course?.context?.state !== 'finished' ? 'Start' : 'Revisit'}
-                        </div>}
+
+                        {["lesson", "final-test"].includes(course.type) && <LaunchCourseBtn course={course} />}
                     </div>
                 </div>
                 <div className="p-2 h-full">
