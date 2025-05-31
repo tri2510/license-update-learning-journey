@@ -15,9 +15,8 @@ const processCourse = (course) => {
         c.created_by = c.created_by || "John Doe"
         c.num_learners = c.num_learners || 745
         c.num_certified_learners = c.num_certified_learners || 532
-        c.context = c.context || {
-            user_id: 'abc',
-            state: 'finished'
+        c.context = {
+            state: 'not_started'
         }
         c.lessons = c.lessons || []
         c.hiddenContent = c.hiddenContent || {}

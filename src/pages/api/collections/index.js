@@ -2,7 +2,7 @@ import { PATHS } from "@/lib/mock_data/paths";
 import { ALL_COURSES } from "@/lib/mock_data/all_courses";
 import CourseProgress from "@/lib/models/CourseProgress";
 import connectToDatabase from "@/lib/mongodb";
-import { check_auth } from "@/lib/check_auth";
+import { check_auth } from "@/lib/backend/check_auth";
 
 let COLLECTIONs = [
     {
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
         }
       }
 
-      console.log("RETURN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+      // console.log("RETURN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
       try {
         res.status(200).json({ success: true, data: dbCollections });

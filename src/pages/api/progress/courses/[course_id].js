@@ -1,6 +1,6 @@
 import connectToDatabase from "@/lib/mongodb";
 import CourseProgress from "@/lib/models/CourseProgress";
-import { check_auth } from "@/lib/check_auth";
+import { check_auth } from "@/lib/backend/check_auth";
 export default async function handler(req, res) {
   const { method } = req;
   const { course_id } = req.query;

@@ -12,13 +12,19 @@ export const check_auth = (req, res) => {
             }));
             if (!user_id) user_id = cookies.user_id;
             if (!token) token = cookies.token;
+        } else {
+            // console.log(">>>>>>>> There is no cookie in header")
         }
     }
 
     // If still missing, return unauthorized
-    if (!user_id || !token) {
-        return res.status(401).json({ success: false, error: "Unauthorized: Missing user_id or token" });
-    }
+    // if (!user_id || !token) {
+    //     return res.status(401).json({ 
+    //         success: false, 
+    //         error: "Unauthorized: Missing user_id or token" });
+    // }
+
+    // console.log("user_id", user_id)
 
     return { user_id, token };
 }

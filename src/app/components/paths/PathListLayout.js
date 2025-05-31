@@ -11,7 +11,6 @@ import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import BtnFullRounded from "../atom/BtnFullRounded";
 
-
 const saveStateLessonFinish = async (course, lesson_id) => {
     if(!course || !course._id || !lesson_id) return null
     try {
@@ -100,8 +99,7 @@ const saveStateCourseStarted = async (course) => {
             lessons: {}
         }
 
-        course.state = "in_progress"
-
+        payload.state = "in_progress"
         const res = await fetch(`/api/progress/courses/${course._id}`, {
             method: "PUT",
             headers: {
@@ -121,7 +119,7 @@ const saveStateCourseStarted = async (course) => {
 }
 
 
-const LaunchCourseBtn = ({course}) => {
+const LaunchCourseBtn = ({path, course}) => {
     const router = useRouter();
 
     const launchCourse = () => {
@@ -132,22 +130,23 @@ const LaunchCourseBtn = ({course}) => {
         router.push(`/path/${path.slug}/course/${course.slug}`)
     }
 
-    return <>   <div className="text-xs">{course?.context?.state }</div>
+    return <>   
+        {/* <div className="text-xs">{course?.context?.state }</div> */}
         { (!course?.context?.state  || course?.context?.state == 'not_started') && <BtnFullRounded
             onClick={() => { 
-                saveStateCourseStarted(course, lesson)
+                saveStateCourseStarted(course)
                 launchCourse()
             }}
             >Start</BtnFullRounded>}
 
         { course?.context?.state == 'in_progress' && <BtnFullRounded
-            onClicked={() => { 
+            onClick={() => { 
                 launchCourse()
             }}
             >Continue</BtnFullRounded>}
 
         { course?.context?.state == 'completed' && <BtnFullRounded
-            onClicked={() => { 
+            onClick={() => { 
                 launchCourse()
             }}
         >Revisit</BtnFullRounded>}
@@ -257,7 +256,7 @@ const CourseBlock = ({ path, course, index }) => {
                             { showCert && <CertificateScreen image={course.image} requestClose={() => { setShowCert(false) }} /> }
                         </>}
 
-                        {["lesson", "final-test"].includes(course.type) && <LaunchCourseBtn course={course} />}
+                        {["lesson", "final-test"].includes(course.type) && <LaunchCourseBtn path={path} course={course} />}
                     </div>
                 </div>
                 <div className="p-2 h-full">

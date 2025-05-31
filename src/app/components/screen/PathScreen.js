@@ -5,16 +5,13 @@ import PathListLayout from "../paths/PathListLayout";
 import { useRouter } from "next/navigation";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react"
-import { IoArrowBack } from "react-icons/io5";
-import { BsDot } from "react-icons/bs";
 import { CiTimer } from "react-icons/ci";
-import { LiaCertificateSolid } from "react-icons/lia";
-import { PiStudent } from "react-icons/pi";
 import { FaUsersBetweenLines } from "react-icons/fa6";
 import { PiCertificateBold } from "react-icons/pi";
 import { FaUserTie } from "react-icons/fa";
 import { GiDuration } from "react-icons/gi";
 import dayjs from 'dayjs';
+import { useEffect } from "react";
 
 const InfoGroup = ({ title, content }) => {
   const [collapsed, setCollapsed] = useState(true)
@@ -39,6 +36,7 @@ const InfoGroup = ({ title, content }) => {
 
 const PathScreen = ({ path }) => {
   const router = useRouter();
+
   if (!path) return;
 
   return (
