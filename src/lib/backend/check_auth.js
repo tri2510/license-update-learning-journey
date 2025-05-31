@@ -2,6 +2,7 @@ export const check_auth = (req, res) => {
     let user_id = req.query.user_id;
     let token = req.query.token;
 
+
     // If not in query, try to get from cookies
     if (!user_id || !token) {
         const cookie = req.headers.cookie;

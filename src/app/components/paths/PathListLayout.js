@@ -11,113 +11,7 @@ import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import BtnFullRounded from "../atom/BtnFullRounded";
 
-const saveStateLessonFinish = async (course, lesson_id) => {
-    if(!course || !course._id || !lesson_id) return null
-    try {
-
-        let payload = payload = course.progress || {
-            course_id: course._id,
-            state: "not_started",
-            data: {},
-            lessons: {}
-        }
-
-        if(payload.lessons) {
-            let lessonProgress = payload.lessons[lesson_id] || { started_at: new Date(), records: []}
-            lessonProgress.records.push({
-                at: new Date(),
-                action: 'complete_lesson',
-            })
-            lessonProgress.updated_at = new Date()
-            lessonProgress.progress = "completed"
-        }
-
-        const res = await fetch(`/api/progress/courses/${course_id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-        if (!res.ok) {
-            const error = await res.json();
-            throw new Error(error.error || "Failed to update lesson state");
-        }
-        return await res.json();
-    } catch (err) {
-        console.error("Error saving lesson finish state:", err);
-        return null;
-    }
-}
-
-const saveStateLessonStarted = async (course, lesson_id) => {
-    if(!course || !course._id || !lesson_id) return null
-    try {
-
-        let payload = payload = course.progress || {
-            course_id: course._id,
-            state: "not_started",
-            data: {},
-            lessons: {}
-        }
-
-        if(payload.lessons) {
-            let lessonProgress = payload.lessons[lesson_id] || { started_at: new Date(), records: []}
-            lessonProgress.records.push({
-                at: new Date(),
-                action: 'start_lesson',
-            })
-            lessonProgress.updated_at = new Date()
-            lessonProgress.progress = "in_progress"
-        }
-
-        const res = await fetch(`/api/progress/courses/${course._id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-        if (!res.ok) {
-            const error = await res.json();
-            throw new Error(error.error || "Failed to update lesson state");
-        }
-        return await res.json();
-    } catch (err) {
-        console.error("Error saving lesson finish state:", err);
-        return null;
-    }
-}
-
-const saveStateCourseStarted = async (course) => {
-    if(!course || !course._id) return null
-    try {
-
-        let payload = course.progress || {
-            course_id: course._id,
-            data: {},
-            lessons: {}
-        }
-
-        payload.state = "in_progress"
-        const res = await fetch(`/api/progress/courses/${course._id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-        if (!res.ok) {
-            const error = await res.json();
-            throw new Error(error.error || "Failed to update lesson state");
-        }
-        return await res.json();
-    } catch (err) {
-        console.error("Error saving lesson finish state:", err);
-        return null;
-    }
-}
-
+import { saveStateCourseStarted, saveStateCourseCompleted } from "@/lib/frontend/course"
 
 const LaunchCourseBtn = ({path, course}) => {
     const router = useRouter();
@@ -125,6 +19,7 @@ const LaunchCourseBtn = ({path, course}) => {
     const launchCourse = () => {
         if (course.extends?.external_link) {
             window.open(course.extends?.external_link, '_blank')
+            window.location.reload()
             return
         }
         router.push(`/path/${path.slug}/course/${course.slug}`)
@@ -133,17 +28,28 @@ const LaunchCourseBtn = ({path, course}) => {
     return <>   
         {/* <div className="text-xs">{course?.context?.state }</div> */}
         { (!course?.context?.state  || course?.context?.state == 'not_started') && <BtnFullRounded
-            onClick={() => { 
-                saveStateCourseStarted(course)
+            onClick={async () => { 
+                await saveStateCourseStarted(course)
                 launchCourse()
             }}
             >Start</BtnFullRounded>}
 
-        { course?.context?.state == 'in_progress' && <BtnFullRounded
+        { course?.context?.state == 'in_progress' &&<> 
+            <BtnFullRounded
             onClick={() => { 
                 launchCourse()
             }}
-            >Continue</BtnFullRounded>}
+            >Continue</BtnFullRounded>
+
+            {
+                course.extends?.external_link && <BtnFullRounded
+                onClick={async () => { 
+                    await saveStateCourseCompleted(course)
+                    window.location.reload()
+                }}
+                >Confirm Finished</BtnFullRounded>
+            }
+            </>}
 
         { course?.context?.state == 'completed' && <BtnFullRounded
             onClick={() => { 
@@ -200,8 +106,8 @@ const CourseBlock = ({ path, course, index }) => {
                                         flex items-center">
 
                 <div className="text-slate-300">
-                    {course?.context?.state === 'finished' && <IoCheckbox size={32} className="text-[#41B452]" />}
-                    {course?.context?.state !== 'finished' && <MdCheckBoxOutlineBlank size={34} />}
+                    {course?.context?.state === 'completed' && <IoCheckbox size={32} className="text-[#41B452]" />}
+                    {course?.context?.state !== 'completed' && <MdCheckBoxOutlineBlank size={34} />}
                 </div>
                 <div className="ml-2 text-xl md:text-2xl font-semibold text-gray-900">{course.name}</div>
             </div>

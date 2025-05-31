@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      // console.log(`BE get course ${slug}`)
+      console.log(`BE get course ${slug}`)
       try {
         let dbCourse = ALL_COURSES.find((course) => course.slug === slug);
         if (!dbCourse) {

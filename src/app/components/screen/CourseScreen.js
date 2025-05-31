@@ -9,6 +9,84 @@ import VideoLesson from '../lessons/VideoLesson';
 import TextMarkdownLesson from '../lessons/TextMarkdownLesson';
 
 
+const saveStateLessonFinish = async (course, lesson_id) => {
+    if(!course || !course._id || !lesson_id) return null
+    try {
+
+        let payload = payload = course.progress || {
+            course_id: course._id,
+            state: "not_started",
+            data: {},
+            lessons: {}
+        }
+
+        if(payload.lessons) {
+            let lessonProgress = payload.lessons[lesson_id] || { started_at: new Date(), records: []}
+            lessonProgress.records.push({
+                at: new Date(),
+                action: 'complete_lesson',
+            })
+            lessonProgress.updated_at = new Date()
+            lessonProgress.progress = "completed"
+        }
+
+        const res = await fetch(`/api/progress/courses/${course_id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.error || "Failed to update lesson state");
+        }
+        return await res.json();
+    } catch (err) {
+        console.error("Error saving lesson finish state:", err);
+        return null;
+    }
+}
+
+const saveStateLessonStarted = async (course, lesson_id) => {
+    if(!course || !course._id || !lesson_id) return null
+    try {
+
+        let payload = payload = course.progress || {
+            course_id: course._id,
+            state: "not_started",
+            data: {},
+            lessons: {}
+        }
+
+        if(payload.lessons) {
+            let lessonProgress = payload.lessons[lesson_id] || { started_at: new Date(), records: []}
+            lessonProgress.records.push({
+                at: new Date(),
+                action: 'start_lesson',
+            })
+            lessonProgress.updated_at = new Date()
+            lessonProgress.progress = "in_progress"
+        }
+
+        const res = await fetch(`/api/progress/courses/${course._id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.error || "Failed to update lesson state");
+        }
+        return await res.json();
+    } catch (err) {
+        console.error("Error saving lesson finish state:", err);
+        return null;
+    }
+}
+
 const LessonListItem = ({ lesson, isActive, onActive}) => {
     return <div
         className={`border-2  pl-1 pr-1 py-1 flex items-center rounded cursor-pointer hover:border-black 

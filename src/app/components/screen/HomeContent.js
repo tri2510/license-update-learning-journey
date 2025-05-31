@@ -8,13 +8,9 @@ const HomeContent = ({ }) => {
 
     useEffect(() => {
         onLoaded()
-        return
-
-
     }, [])
 
     const onLoaded = async () => {
-        console.log("onLoaded")
         // Get all query fields of the current URL
         const queryParams = {};
         if (typeof window !== "undefined") {

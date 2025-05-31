@@ -2,7 +2,9 @@ import connectToDatabase from "@/lib/mongodb";
 import CourseProgress from "@/lib/models/CourseProgress";
 
 export const getProgressForCourse = async (user_id, course_id) => {
+    if(!user_id) return
     try {
+        console.log(`getProgressForCourse user_id ${user_id}`)
         await connectToDatabase();
         const dbProgress = await CourseProgress.findOne({ user_id: user_id, course_id: course_id });
         return dbProgress
@@ -13,8 +15,8 @@ export const getProgressForCourse = async (user_id, course_id) => {
 }
 
 export const getProgressForCourses = async (user_id, course_ids) => {
+    if(!user_id) return
     try {
-
         let tmpCourseIds = []
         if (Array.isArray(course_ids)) {
             tmpCourseIds = course_ids;

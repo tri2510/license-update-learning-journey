@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import CertificateScreen from "../atom/CertificateScreen";
 import { useState } from "react"
 
+import { saveStateCourseStarted, saveStateCourseCompleted } from "@/lib/frontend/course"
+
 const CourseNode = ({ path, item }) => {
   const router = useRouter();
   const [showCert, setShowCert] = useState(false)
@@ -21,7 +23,7 @@ const CourseNode = ({ path, item }) => {
         left: item.x,
         width: "11wv",
       }}
-      onClick={() => {
+      onClick={async () => {
 
         if (item.course?.state === "locked") {
           return;
@@ -36,6 +38,11 @@ const CourseNode = ({ path, item }) => {
 
         if (item.course?.extends?.external_link) {
           window.open(item.course?.extends?.external_link, "_blank");
+          window.location.reload()
+
+          if(item.course?.state!='completed') {
+            await saveStateCourseCompleted(item.course)
+          }
           return;
         }
 
