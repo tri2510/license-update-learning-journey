@@ -4,7 +4,7 @@ export const COURSES = [
         name: "Overview",
         shortDescription: "Overview",
         description: "Overview",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -20,7 +20,7 @@ export const COURSES = [
         name: "How to create your own runtime",
         shortDescription: "How to create your own runtime",
         description: "How to create your own runtime",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -36,7 +36,7 @@ export const COURSES = [
         name: "Create API provider",
         shortDescription: "Create API provider",
         description: "Create API provider",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -52,7 +52,7 @@ export const COURSES = [
         name: "Verify your knowledge",
         shortDescription: "Verify your knowledge",
         description: "Verify your knowledge",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {

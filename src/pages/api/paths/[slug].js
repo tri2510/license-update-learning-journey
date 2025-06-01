@@ -7,13 +7,46 @@ import { getProgressForCourses } from "@/pages/api/progress/courses/utils";
 import { check_auth } from "@/lib/backend/check_auth";
 import { processCourseContext } from "@/pages/api/progress/courses/utils";
 
-function addMediaUrlForCourses(courses) {
-  courses.forEach((c) => {
-    let matchMedia = ICONs.find((icon) => icon.name == c.icon_name);
-    if (matchMedia) {
-      c.icon = matchMedia.url;
-    } else {
-      console.log("Not match");
+import { STATE_NOT_STARTED, STATE_IN_PROGRESS, STATE_COMPLETED, STATE_LOCKED } from "@/lib/const";
+
+
+const ICON_SET = {
+  not_started: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+  in_progress: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-learning.png',
+  completed: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-done.png',
+  locked: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+}
+
+function addMediaUrlForCourses(path) {
+
+  if (!path || !path.courses) return
+  let ICONS = path.icon_set || ICON_SET
+
+
+  path.courses.forEach((course) => {
+    // let matchMedia = ICONs.find((icon) => icon.name == c.icon_name);
+    // if (matchMedia) {
+    //   c.icon = matchMedia.url;
+    // } else {
+    //   console.log("Not match");
+    // }
+    if (!course.icon) {
+      switch (course.context?.state) {
+        case STATE_NOT_STARTED:
+          course.icon = ICONS.not_started;
+          break;
+        case STATE_IN_PROGRESS:
+          course.icon = ICONS.in_progress;
+          break;
+        case STATE_COMPLETED:
+          course.icon = ICONS.completed;
+          break;
+        case STATE_LOCKED:
+          course.icon = ICONS.locked;
+          break;
+        default:
+          course.icon = ICONS.not_started;
+      }
     }
   });
 }
@@ -61,7 +94,7 @@ export default async function handler(req, res) {
             console.log(">>>>> Missing user_id")
           }
 
-          addMediaUrlForCourses(dbPath.courses);
+          addMediaUrlForCourses(dbPath);
           // console.log(`dbCourse`, dbPath.courses)
         } catch (err) {
           console.log(err);

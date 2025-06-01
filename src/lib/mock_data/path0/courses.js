@@ -6,7 +6,7 @@ export const COURSES = [
         name: "Overview",
         shortDescription: "Overview",
         description: "Overview",
-        icon_name: "lesson-finished",
+        icon_name: "",
         state: "finished",
         type: "lesson",
         context: {
@@ -22,7 +22,7 @@ export const COURSES = [
         name: "Part A: Essentials",
         shortDescription: "Part A: Essentials",
         description: "Part A: Essentials",
-        icon_name: "lesson-finished",
+        icon_name: "",
         state: "finished",
         type: "lesson",
         context: {
@@ -38,7 +38,7 @@ export const COURSES = [
         name: "Part B: Lessons Learned",
         shortDescription: "Part B: Lessons Learned",
         description: "Part B: Lessons Learned",
-        icon_name: "lesson-inprogress",
+        icon_name: "",
         state: "inprogress",
         type: "lesson",
         context: {
@@ -54,7 +54,7 @@ export const COURSES = [
         name: "Part C: Building Blocks",
         shortDescription: "Part C: Building Blocks",
         description: "Part C: Building Blocks",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -70,7 +70,7 @@ export const COURSES = [
         name: "Part D: Implementation Strategies",
         shortDescription: "Part D: Implementation Strategies",
         description: "Part D: Implementation Strategies",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -86,7 +86,7 @@ export const COURSES = [
         name: "Verify your knowledge",
         shortDescription: "Complete the following test to confirm your knowledge and receive your certificate.",
         description: "Complete the following test to confirm your knowledge and receive your certificate.",
-        icon_name: "lesson-ready",
+        icon_name: "",
         top_icon: "/imgs/badge/practice.png",
         state: "released",
         type: "final-test",
@@ -104,7 +104,7 @@ export const COURSES = [
         name: "Certificate",
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
-        icon_name: "lesson-ready",
+        icon_name: "",
         top_icon: "/imgs/badge/quality-badge.png",
         image: "/imgs/cert/cert_101_introduction.png",
         state: "locked-highlight",

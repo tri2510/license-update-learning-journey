@@ -4,7 +4,7 @@ export const COURSES = [
         name: "Overview",
         shortDescription: "Overview",
         description: "Overview",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -20,7 +20,7 @@ export const COURSES = [
         name: "How to create your own widget",
         shortDescription: "How to create your own widget",
         description: "How to create your own widget",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -36,7 +36,7 @@ export const COURSES = [
         name: "Deploy your widget",
         shortDescription: "Deploy your widget",
         description: "Deploy your widget",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -52,7 +52,7 @@ export const COURSES = [
         name: "Verify your knowledge",
         shortDescription: "Verify your knowledge",
         description: "Verify your knowledge",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {

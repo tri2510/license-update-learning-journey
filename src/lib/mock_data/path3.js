@@ -24,6 +24,12 @@ export const PATH3 = {
   hiddenContent: {
     secret: "hidden-information",
   },
+  icon_set: {
+    not_started: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+    in_progress: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-learning.png',
+    completed: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-done.png',
+    locked: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+  },
   course_ids: [
     "1452a86e7895abcd12345661",
     "1452a86e7895abcd12345662",

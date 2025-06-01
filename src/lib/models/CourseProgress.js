@@ -1,19 +1,41 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+import { COURSE_STATES, LESSON_STATES, STATE_NOT_STARTED } from '@/lib/const.js';
+
+
 const CourseProgressSchema = new mongoose.Schema(
   {
     user_id: { type: Schema.Types.ObjectId },
     course_id: { type: Schema.Types.ObjectId },
-    state: { 
-      type: String, 
-      enum: ['not_started', 'in_progress', 'completed'], 
-      default: 'not_started' 
+    state: {
+      type: String,
+      enum: COURSE_STATES,
+      default: STATE_NOT_STARTED
     },
     started_at: { type: Date },
     finished_at: { type: Date },
     data: { type: Schema.Types.Mixed },
-    lessons: { type: Schema.Types.Mixed }
+    lessons: {
+      type: Map,
+      of: {
+        state: {
+          type: String,
+          enum: LESSON_STATES,
+          default: STATE_NOT_STARTED
+        },
+        updated_at: { type: Date },
+        started_at: { type: Date },
+        finished_at: { type: Date },
+        data: { type: Schema.Types.Mixed },
+        records: [{
+          at: { type: Date },
+          action: { type: String },
+          refId: { type: String },
+          refType: { type: String }
+        }]
+      }
+    }
   },
   {
     timestamps: {

@@ -4,7 +4,7 @@ export const COURSES = [
         name: "Overview",
         shortDescription: "Overview",
         description: "Overview",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -20,7 +20,7 @@ export const COURSES = [
         name: "SDV Culture",
         shortDescription: "SDV Culture",
         description: "SDV Culture",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -36,7 +36,7 @@ export const COURSES = [
         name: "Lean Sourcing",
         shortDescription: "Lean Sourcing",
         description: "Lean Sourcing",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -52,7 +52,7 @@ export const COURSES = [
         name: "SDV Systems Engineering",
         shortDescription: "SDV Systems Engineering",
         description: "SDV Systems Engineering",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -68,7 +68,7 @@ export const COURSES = [
         name: "Digital First",
         shortDescription: "Digital First",
         description: "Digital First",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "lesson",
         context: {
@@ -84,7 +84,7 @@ export const COURSES = [
         name: "Verify your knowledge",
         shortDescription: "Verify your knowledge",
         description: "Verify your knowledge",
-        icon_name: "lesson-ready",
+        icon_name: "",
         state: "locked",
         type: "final-test",
         context: {

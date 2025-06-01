@@ -16,6 +16,12 @@ export const PATH2_5 = {
   configs: {
     display_type: "list"
   },
+  icon_set: {
+    not_started: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+    in_progress: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-learning.png',
+    completed: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-done.png',
+    locked: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+  },
   extends: {
     // external_link: "https://www.sdv.guide/pulse",
     est_release_date: 'end of July'
