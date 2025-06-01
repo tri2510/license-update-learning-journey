@@ -120,7 +120,7 @@ const components = {
 };
 
 
-const TextMarkdownLesson = ({ lesson }) => {
+const TextMarkdownLesson = ({ lesson, onCloseRequest }) => {
 
     if (!lesson) return <></>
 

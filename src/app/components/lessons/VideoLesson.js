@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 
 
-const VideoLesson = ({ lesson }) => {
+const VideoLesson = ({ lesson, onCloseRequest }) => {
 
     if (!lesson) return <></>
 

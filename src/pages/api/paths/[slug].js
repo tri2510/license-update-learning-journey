@@ -56,7 +56,6 @@ export default async function handler(req, res) {
   const { slug } = req.query;
 
   const { user_id, token } = check_auth(req, res);
-
   switch (method) {
     case "GET":
       try {

@@ -1,11 +1,13 @@
 import connectToDatabase from "@/lib/mongodb";
-import LessonProgress from "@/lib/models/LessonProgress";
+import CourseProgress from "@/lib/models/CourseProgress";
 import { check_auth } from "@/lib/backend/check_auth";
-import { STATE_IN_PROGRESS, LESSON_STATES, STATE_NOT_STARTED } from "../../../../../../lib/const";
+import { STATE_IN_PROGRESS, STATE_NOT_STARTED , STATE_COMPLETED, STATE_LOCKED} from "@/lib/const";
 
 export default async function handler(req, res) {
     const { method } = req;
     const { course_id, lesson_slug } = req.query;
+
+    console.log(`on push lesson status ${course_id} - ${lesson_slug}`)
 
     const { user_id, token } = check_auth(req, res);
 
@@ -42,15 +44,16 @@ export default async function handler(req, res) {
             }
             break;
         case "PUT":
+            console.log("@ PUT handler")
             try {
                 const updateData = req.body;
-                if (!updateData || !LESSON_STATES.includes(updateData.state)) {
+                if (!updateData || !updateData.state) {
                     return res.status(400).json({ success: false, error: "Invalid request body, incorrect lesson state" });
                 }
 
                 await connectToDatabase();
 
-                const existingProgress = await CourseProgress.findOne({
+                let existingProgress = await CourseProgress.findOne({
                     user_id: user_id,
                     course_id: course_id
                 });
@@ -63,11 +66,12 @@ export default async function handler(req, res) {
                     };
                 }
 
+                let existLesson
                 if(!existingProgress.lessons) {
-                    existingProgress.lessons = {}
+                    existingProgress.lessons = new Map()
+                } else {
+                    existLesson = existingProgress.lessons.get(lesson_slug)
                 }
-
-                let existLesson = existingProgress.lessons[lesson_slug]
 
                 if(!existLesson) {
                     existLesson = {
@@ -76,16 +80,18 @@ export default async function handler(req, res) {
                         data: {},
                         records: []
                     }
+                } else {
+                    console.log("Exist lesson")
                 }
 
                 existLesson.state = updateData.state
                 existLesson.updated_at = new Date()
-                if(payload.data) {
-                    existLesson.data = {
-                        ...existLesson.data,
-                        ...updateData.data
-                    }
-                }
+                // if(payload.data) {
+                //     existLesson.data = {
+                //         ...existLesson.data,
+                //         ...updateData.data
+                //     }
+                // }
                 
 
                 switch(updateData.state) {
@@ -96,7 +102,8 @@ export default async function handler(req, res) {
                             at: new Date(),
                             action: updateData.record?.action ||  "Withdraw lesson",
                             refId: updateData.record?.refId || '',
-                            refType: updateData.record?.refType || ''
+                            refType: updateData.record?.refType || '',
+                            data: updateData.record?.data || {}
                         })
                         break;
                     case STATE_IN_PROGRESS:
@@ -108,7 +115,8 @@ export default async function handler(req, res) {
                             at: new Date(),
                             action: updateData.record?.action ||  "Do learning",
                             refId: updateData.record?.refId || '',
-                            refType: updateData.record?.refType || ''
+                            refType: updateData.record?.refType || '',
+                            data: updateData.record?.data || {}
                         })
                         break;
                     case STATE_COMPLETED:
@@ -120,12 +128,15 @@ export default async function handler(req, res) {
                             at: new Date(),
                             action: updateData.record?.action ||  "Finish lesson",
                             refId: updateData.record?.refId || '',
-                            refType: updateData.record?.refType || ''
+                            refType: updateData.record?.refType || '',
+                            data: updateData.record?.data || {}
                         })
+                        break;
+                    default:
                         break;
                 }
 
-                existingProgress.lessons[lesson_slug] = existLesson
+                existingProgress.lessons.set(lesson_slug, existLesson)
 
                 // when I do start or finish lesson, make sure auto set course to started
                 if([STATE_IN_PROGRESS, STATE_COMPLETED].includes(updateData.state)) {
@@ -135,7 +146,10 @@ export default async function handler(req, res) {
                     }
                 }
 
-                const updatedProgress = await LessonProgress.findOneAndUpdate(
+                // console.log(`existingProgress`, existingProgress)
+
+                const updatedProgress = await CourseProgress.findOneAndUpdate(
+                    { user_id: user_id, course_id: course_id },
                     existingProgress,
                     { new: true, upsert: true }
                 );

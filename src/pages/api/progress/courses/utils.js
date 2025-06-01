@@ -1,8 +1,11 @@
 import connectToDatabase from "@/lib/mongodb";
 import CourseProgress from "@/lib/models/CourseProgress";
 
+
+import { STATE_NOT_STARTED, STATE_IN_PROGRESS, STATE_COMPLETED, STATE_LOCKED } from "@/lib/const";
+
 export const getProgressForCourse = async (user_id, course_id) => {
-    if(!user_id) return
+    if (!user_id) return
     try {
         console.log(`getProgressForCourse user_id ${user_id}`)
         await connectToDatabase();
@@ -15,7 +18,7 @@ export const getProgressForCourse = async (user_id, course_id) => {
 }
 
 export const getProgressForCourses = async (user_id, course_ids) => {
-    if(!user_id) return
+    if (!user_id) return
     try {
         let tmpCourseIds = []
         if (Array.isArray(course_ids)) {
@@ -40,10 +43,24 @@ export const processCourseContext = async (course) => {
     if (!course) return
 
     course.context = {
-        state: 'not_started'
+        state: STATE_NOT_STARTED
     }
-    if(course.progress) {
-        course.context.state = course.progress?.state || 'not_started'
+    if (course.progress) {
+        course.context.state = course.progress?.state || STATE_NOT_STARTED
+
+        if (course.lessons) {
+            course.lessons.forEach(lesson => {
+                lesson.context = {
+                    state: STATE_NOT_STARTED
+                }
+
+                if (course.progress?.lessons && lesson.slug) {
+                    const lessonProgress = course.progress.lessons[lesson.slug]
+                    if (lessonProgress) {
+                        lesson.context.state = lessonProgress.state || STATE_NOT_STARTED
+                    }
+                }
+            })
+        }
     }
-    
 }

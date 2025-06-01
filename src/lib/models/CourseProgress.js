@@ -32,7 +32,8 @@ const CourseProgressSchema = new mongoose.Schema(
           at: { type: Date },
           action: { type: String },
           refId: { type: String },
-          refType: { type: String }
+          refType: { type: String },
+          data: { type: Schema.Types.Mixed },
         }]
       }
     }

@@ -7,17 +7,22 @@ import { SlNotebook } from "react-icons/sl";
 import QuizLesson from '../lessons/QuizLesson';
 import VideoLesson from '../lessons/VideoLesson';
 import TextMarkdownLesson from '../lessons/TextMarkdownLesson';
+import { STATE_COMPLETED } from "@/lib/const";
+import { FaCheckCircle } from "react-icons/fa";
 
-
-const saveStateLessonFinish = async (course, lesson_id) => {
-    if(!course || !course._id || !lesson_id) return null
+const saveStateLessonFinish = async (course, lesson_slug, data) => {
+    if(!course || !course._id || !lesson_slug) return null
     try {
 
-        let payload = payload = course.progress || {
+        let payload = {
             course_id: course._id,
-            state: "not_started",
-            data: {},
-            lessons: {}
+            state: STATE_COMPLETED,
+            record: {
+                action: 'Finish lesson',
+                data: data,
+                refId: '',
+                refType: '',
+            }
         }
 
         if(payload.lessons) {
@@ -30,46 +35,7 @@ const saveStateLessonFinish = async (course, lesson_id) => {
             lessonProgress.progress = "completed"
         }
 
-        const res = await fetch(`/api/progress/courses/${course_id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-        if (!res.ok) {
-            const error = await res.json();
-            throw new Error(error.error || "Failed to update lesson state");
-        }
-        return await res.json();
-    } catch (err) {
-        console.error("Error saving lesson finish state:", err);
-        return null;
-    }
-}
-
-const saveStateLessonStarted = async (course, lesson_id) => {
-    if(!course || !course._id || !lesson_id) return null
-    try {
-
-        let payload = payload = course.progress || {
-            course_id: course._id,
-            state: "not_started",
-            data: {},
-            lessons: {}
-        }
-
-        if(payload.lessons) {
-            let lessonProgress = payload.lessons[lesson_id] || { started_at: new Date(), records: []}
-            lessonProgress.records.push({
-                at: new Date(),
-                action: 'start_lesson',
-            })
-            lessonProgress.updated_at = new Date()
-            lessonProgress.progress = "in_progress"
-        }
-
-        const res = await fetch(`/api/progress/courses/${course._id}`, {
+        const res = await fetch(`/api/progress/courses/${course._id}/lessons/${lesson_slug}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -103,8 +69,11 @@ const LessonListItem = ({ lesson, isActive, onActive}) => {
             {lesson.type === 'text-markdown' && <SlNotebook size={36} className='text-slate-800]' />}
         </div>
         <div className='grow pl-2 py-0'>
-            <div className='font-bold text-black text-base'>{lesson.name}</div>
-            <div className='text-xs line-clamp-3 leading-tight'>{lesson.description}</div>
+            <div className='font-bold text-black text-base flex items-center justify-between space-x-1'>
+                {lesson.name}
+                { lesson.context?.state == STATE_COMPLETED && <FaCheckCircle size={20} />}
+            </div>
+            <div className='text-xs line-clamp-2 leading-tight'>{lesson.description}</div>
         </div>
     </div>
 }
@@ -112,23 +81,42 @@ const LessonListItem = ({ lesson, isActive, onActive}) => {
 const CourseScreen = ({ course }) => {
     if (!course) return <></>
 
-    
-    const [activeLessonSlug, setActiveLessonSlug] = useState("")
+    const [activeLessonIndex, setActiveLessonIndex] = useState(0)
     const [activeLesson, setActiveLesson] = useState()
+    // const [activeLessonSlug, setActiveLessonSlug] = useState("")
+    
     useEffect(() => {
-        if(!activeLessonSlug){
+        try{
+            let lesson = course.lessons[activeLessonIndex]
+            setActiveLesson(lesson)
+        } catch(err) {
+            // console.log(err)
             setActiveLesson(null)
-            return
         }
-        let lesson = course.lessons?.find(l => l.slug === activeLessonSlug)
-        setActiveLesson(lesson)
-    }, [activeLessonSlug])
+    }, [activeLessonIndex])
+
+
+    // useEffect(() => {
+    //     if(!activeLessonSlug){
+    //         setActiveLesson(null)
+    //         return
+    //     }
+    //     let lesson = course.lessons?.find(l => l.slug === activeLessonSlug)
+    //     setActiveLesson(lesson)
+    // }, [activeLessonSlug])
 
     useEffect(() => {
         if(course.lessons && course.lessons.length>0) {
-            setActiveLessonSlug(course.lessons[0].slug)
+            // setActiveLessonSlug(course.lessons[0].slug)
+            setActiveLessonIndex(0)
         }
     }, [course.lessons])
+
+    const gotoNextLesson = () => {
+        if(activeLessonIndex < course.lessons.length-1) {
+            setActiveLessonIndex((v) => v+1)
+        }
+    }
 
 
     return <div className='w-full'>
@@ -146,14 +134,22 @@ const CourseScreen = ({ course }) => {
                 {
                     course.lessons.length > 0 && course.lessons.map((lesson, lIndex) => <LessonListItem key={lIndex} 
                         lesson={lesson} 
-                        isActive={activeLessonSlug == lesson.slug}
-                        onActive={(e) => { setActiveLessonSlug(lesson.slug)}}/>
+                        isActive={lIndex == activeLessonIndex}
+                        onActive={(e) => { 
+                            setActiveLessonIndex(lIndex)
+                        }}/>
                     )}
             </div>
             
             <div className='grow border border-slate-200 px-2 rounded bg-white min-h-[80vh]'>
                 { activeLesson && <>
-                    { activeLesson.type === 'quiz' && <QuizLesson lesson={activeLesson}/>}
+                    { activeLesson.type === 'quiz' && <QuizLesson lesson={activeLesson} 
+                            onCloseRequest={() => {
+                                gotoNextLesson()
+                            }} 
+                            onSumbitLesson={(data) => {
+                                saveStateLessonFinish(course, activeLesson.slug, data || {})
+                            }}/>}
                     { activeLesson.type === 'video' && <VideoLesson lesson={activeLesson}/>}
                     { activeLesson.type === 'text-markdown' && <TextMarkdownLesson lesson={activeLesson}/>}
                 </> }
