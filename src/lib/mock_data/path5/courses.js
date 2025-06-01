@@ -5,7 +5,7 @@ export const COURSES = [
         shortDescription: "Introduction",
         description: "Introduction",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
@@ -21,7 +21,7 @@ export const COURSES = [
         shortDescription: "Component and interfaces",
         description: "Component and interfaces",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
@@ -37,7 +37,7 @@ export const COURSES = [
         shortDescription: "IVI and Marketplace",
         description: "IVI and Marketplace",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
@@ -53,7 +53,7 @@ export const COURSES = [
         shortDescription: "Work with digital.auto playground",
         description: "Work with digital.auto playground",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
@@ -69,7 +69,7 @@ export const COURSES = [
         shortDescription: "Remote access and local development",
         description: "Remote access and local development",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         image: "/imgs/dreamKit.png",
         context: {
@@ -86,7 +86,7 @@ export const COURSES = [
         description: "Verify your knowledge",
         icon_name: "",
         top_icon: "/imgs/badge/practice.png",
-        state: "locked",
+        state: "",
         type: "final-test",
         image: "/imgs/final-test.jpg",
         context: {
@@ -105,7 +105,7 @@ export const COURSES = [
         icon_name: "",
         image: "/imgs/certification.jpg",
         top_icon: "/imgs/badge/quality-badge.png",
-        state: "locked-highlight",
+        state: "",
         type: "award",
         context: {
             user_id: 'abc',

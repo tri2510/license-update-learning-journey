@@ -1,13 +1,12 @@
 import connectToDatabase from "@/lib/mongodb";
 import CourseProgress from "@/lib/models/CourseProgress";
 import { check_auth } from "@/lib/backend/check_auth";
-import { STATE_IN_PROGRESS, STATE_NOT_STARTED , STATE_COMPLETED, STATE_LOCKED} from "@/lib/const";
+import { STATE_IN_PROGRESS, STATE_NOT_STARTED, STATE_COMPLETED, STATE_LOCKED } from "@/lib/const";
+import { ALL_COURSES } from "@/lib/mock_data/all_courses";
 
 export default async function handler(req, res) {
     const { method } = req;
     const { course_id, lesson_slug } = req.query;
-
-    console.log(`on push lesson status ${course_id} - ${lesson_slug}`)
 
     const { user_id, token } = check_auth(req, res);
 
@@ -44,7 +43,6 @@ export default async function handler(req, res) {
             }
             break;
         case "PUT":
-            console.log("@ PUT handler")
             try {
                 const updateData = req.body;
                 if (!updateData || !updateData.state) {
@@ -67,40 +65,30 @@ export default async function handler(req, res) {
                 }
 
                 let existLesson
-                if(!existingProgress.lessons) {
+                if (!existingProgress.lessons) {
                     existingProgress.lessons = new Map()
                 } else {
                     existLesson = existingProgress.lessons.get(lesson_slug)
                 }
 
-                if(!existLesson) {
+                if (!existLesson) {
                     existLesson = {
                         state: STATE_NOT_STARTED,
                         finished_at: null,
                         data: {},
                         records: []
                     }
-                } else {
-                    console.log("Exist lesson")
                 }
-
                 existLesson.state = updateData.state
                 existLesson.updated_at = new Date()
-                // if(payload.data) {
-                //     existLesson.data = {
-                //         ...existLesson.data,
-                //         ...updateData.data
-                //     }
-                // }
-                
 
-                switch(updateData.state) {
+                switch (updateData.state) {
                     case STATE_NOT_STARTED:
                         existLesson.started_at = null;
                         existLesson.finished_at = null;
                         existLesson.records.push({
                             at: new Date(),
-                            action: updateData.record?.action ||  "Withdraw lesson",
+                            action: updateData.record?.action || "Withdraw lesson",
                             refId: updateData.record?.refId || '',
                             refType: updateData.record?.refType || '',
                             data: updateData.record?.data || {}
@@ -113,7 +101,7 @@ export default async function handler(req, res) {
                         existLesson.finished_at = null;
                         existLesson.records.push({
                             at: new Date(),
-                            action: updateData.record?.action ||  "Do learning",
+                            action: updateData.record?.action || "Do learning",
                             refId: updateData.record?.refId || '',
                             refType: updateData.record?.refType || '',
                             data: updateData.record?.data || {}
@@ -126,11 +114,33 @@ export default async function handler(req, res) {
                         existLesson.finished_at = new Date();
                         existLesson.records.push({
                             at: new Date(),
-                            action: updateData.record?.action ||  "Finish lesson",
+                            action: updateData.record?.action || "Finish lesson",
                             refId: updateData.record?.refId || '',
                             refType: updateData.record?.refType || '',
                             data: updateData.record?.data || {}
                         })
+
+                        // for this course, check that is all lesson finished
+                        if (existingProgress.state != STATE_COMPLETED) {
+                            let dbCourse = ALL_COURSES.find((course) => course._id === course_id);
+                            if (dbCourse) {
+                                let allLessonsCompleted = true;
+                                for (const lesson of dbCourse.lessons) {
+                                    if (lesson.slug != lesson_slug) {
+                                        const lessonProgress = existingProgress.lessons.get(lesson.slug);
+                                        if (!lessonProgress || lessonProgress.state !== STATE_COMPLETED) {
+                                            allLessonsCompleted = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (allLessonsCompleted) {
+                                    existingProgress.state = STATE_COMPLETED;
+                                    existingProgress.finished_at = new Date();
+                                }
+                            }
+                        }
+
                         break;
                     default:
                         break;
@@ -139,14 +149,16 @@ export default async function handler(req, res) {
                 existingProgress.lessons.set(lesson_slug, existLesson)
 
                 // when I do start or finish lesson, make sure auto set course to started
-                if([STATE_IN_PROGRESS, STATE_COMPLETED].includes(updateData.state)) {
-                    if(existingProgress.state == STATE_NOT_STARTED) {
+                if ([STATE_IN_PROGRESS, STATE_COMPLETED].includes(updateData.state)) {
+                    if (existingProgress.state == STATE_NOT_STARTED) {
                         existingProgress.state = STATE_IN_PROGRESS
                         existingProgress.started_at = new Date()
                     }
                 }
 
                 // console.log(`existingProgress`, existingProgress)
+
+
 
                 const updatedProgress = await CourseProgress.findOneAndUpdate(
                     { user_id: user_id, course_id: course_id },

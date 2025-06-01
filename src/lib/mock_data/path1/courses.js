@@ -7,7 +7,7 @@ export const COURSES = [
         shortDescription: "[External Material] View lessons on Coursera.",
         description: "[External Material] View lessons on Coursera.",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -44,7 +44,7 @@ export const COURSES = [
         icon_name: "",
         image: "/imgs/cert/cert_101_introduction.png",
         top_icon: "/imgs/badge/quality-badge.png",
-        state: "locked-highlight",
+        state: "",
         type: "award",
         context: {
             user_id: 'abc',

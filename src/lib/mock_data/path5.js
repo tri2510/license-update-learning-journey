@@ -13,7 +13,7 @@ export const PATH5 = {
   tags: ["onboard", "general", "playground", "beginner", "getting-started"],
   valid_from: "2025-01-01T00:00:00.000Z",
   valid_to: "2026-01-01T00:00:00.000Z",
-  state: "locked",
+  state: "",
   level: "3",
   configs: {
     display_type: "list"

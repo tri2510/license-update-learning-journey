@@ -5,7 +5,7 @@ export const COURSES = [
         shortDescription: "Overview",
         description: "Overview",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -21,7 +21,7 @@ export const COURSES = [
         shortDescription: "SDV Culture",
         description: "SDV Culture",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -37,7 +37,7 @@ export const COURSES = [
         shortDescription: "Lean Sourcing",
         description: "Lean Sourcing",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -53,7 +53,7 @@ export const COURSES = [
         shortDescription: "SDV Systems Engineering",
         description: "SDV Systems Engineering",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -69,7 +69,7 @@ export const COURSES = [
         shortDescription: "Digital First",
         description: "Digital First",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -85,7 +85,7 @@ export const COURSES = [
         shortDescription: "Verify your knowledge",
         description: "Verify your knowledge",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "final-test",
         context: {
             user_id: 'abc',
@@ -101,7 +101,7 @@ export const COURSES = [
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
         icon_name: "certificate",
-        state: "locked-highlight",
+        state: "",
         type: "award",
         context: {
             user_id: 'abc',

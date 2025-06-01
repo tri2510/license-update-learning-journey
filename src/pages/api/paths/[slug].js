@@ -3,9 +3,9 @@ import { ALL_COURSES } from "@/lib/mock_data/all_courses";
 import { ICONs } from "@/lib/mock_data/media";
 import { PATHS } from "@/lib/mock_data/paths";
 
-import { getProgressForCourses } from "@/pages/api/progress/courses/utils";
+// import { getProgressForCourses } from "@/pages/api/progress/courses/utils";
 import { check_auth } from "@/lib/backend/check_auth";
-import { processCourseContext } from "@/pages/api/progress/courses/utils";
+// import { processCourseContext } from "@/pages/api/progress/courses/utils";
 
 import { STATE_NOT_STARTED, STATE_IN_PROGRESS, STATE_COMPLETED, STATE_LOCKED } from "@/lib/const";
 
@@ -24,12 +24,6 @@ function addMediaUrlForCourses(path) {
 
 
   path.courses.forEach((course) => {
-    // let matchMedia = ICONs.find((icon) => icon.name == c.icon_name);
-    // if (matchMedia) {
-    //   c.icon = matchMedia.url;
-    // } else {
-    //   console.log("Not match");
-    // }
     if (!course.icon) {
       switch (course.context?.state) {
         case STATE_NOT_STARTED:
@@ -71,29 +65,29 @@ export default async function handler(req, res) {
             dbPath.course_ids.includes(course._id)
           );
 
-          if (user_id) {
-            let progresses = await getProgressForCourses(user_id, dbPath.course_ids)
-            if (progresses && Array.isArray(progresses)) {
-              progresses = JSON.parse(JSON.stringify(progresses))
-              dbPath.courses.forEach((course) => {
-                const progress = progresses.find(
-                  (p) => p.course_id === course._id
-                );
-                // if(!progress) {
-                //   console.log(`Found no progress for course ${course.name}`)
-                // }
-                course.progress = progress || null;
+          // if (user_id) {
+          //   let progresses = await getProgressForCourses(user_id, dbPath.course_ids)
+          //   if (progresses && Array.isArray(progresses)) {
+          //     progresses = JSON.parse(JSON.stringify(progresses))
+          //     dbPath.courses.forEach((course) => {
+          //       const progress = progresses.find(
+          //         (p) => p.course_id === course._id
+          //       );
+          //       // if(!progress) {
+          //       //   console.log(`Found no progress for course ${course.name}`)
+          //       // }
+          //       course.progress = progress || null;
 
-                processCourseContext(course)
-              });
-            } else {
-              console.log("Found not progresses")
-            }
-          } else {
-            console.log(">>>>> Missing user_id")
-          }
+          //       processCourseContext(course)
+          //     });
+          //   } else {
+          //     console.log("Found not progresses")
+          //   }
+          // } else {
+          //   console.log(">>>>> Missing user_id")
+          // }
 
-          addMediaUrlForCourses(dbPath);
+          // addMediaUrlForCourses(dbPath);
           // console.log(`dbCourse`, dbPath.courses)
         } catch (err) {
           console.log(err);

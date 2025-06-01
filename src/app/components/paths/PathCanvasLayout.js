@@ -6,7 +6,7 @@ import { useState } from "react"
 
 import { saveStateCourseStarted, saveStateCourseCompleted } from "@/lib/frontend/course"
 
-const CourseNode = ({ path, item }) => {
+const CourseNode = ({ path, item, onRequestUpdateProgress }) => {
   const router = useRouter();
   const [showCert, setShowCert] = useState(false)
 
@@ -30,7 +30,7 @@ const CourseNode = ({ path, item }) => {
         }
 
         if (item.course?.type == 'award') {
-          if (item.course?.context?.state === 'finished') {
+          if (item.course?.context?.state === 'completed') {
             setShowCert(true);
           }
           return
@@ -38,7 +38,8 @@ const CourseNode = ({ path, item }) => {
 
         if (item.course?.extends?.external_link) {
           window.open(item.course?.extends?.external_link, "_blank");
-          window.location.reload()
+          if(onRequestUpdateProgress) onRequestUpdateProgress()
+          // window.location.reload()
 
           if(item.course?.state!='completed') {
             await saveStateCourseCompleted(item.course)
@@ -78,7 +79,7 @@ const CourseNode = ({ path, item }) => {
   </>
 }
 
-const PathCanvasLayout = ({ path }) => {
+const PathCanvasLayout = ({ path, maps, onRequestUpdateProgress}) => {
   const router = useRouter();
 
   return <div className="px-2 lg:px-4">
@@ -98,8 +99,7 @@ const PathCanvasLayout = ({ path }) => {
       </div> */}
 
       <div className="absolute top-0 left-0 right-0 bottom-0 opacity-10 bg-white z-10"></div>
-      {path.maps &&
-        path.maps.map((item, index) => <CourseNode key={index} path={path} item={item} />)}
+      { maps && maps.map((item, index) => <CourseNode key={index} path={path} item={item} onRequestUpdateProgress={onRequestUpdateProgress}/>)}
     </div>
   </div>
 }

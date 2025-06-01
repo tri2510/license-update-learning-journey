@@ -42,7 +42,7 @@ const Page = async ({ params }) => {
 
       <div className="w-full mt-4 px-4 flex flex-col">
         <div className="w-full px-2 lg:px-4">
-          <CourseScreen course={dbCourse} />
+          <CourseScreen course={dbCourse} path_slug={path_slug}/>
         </div>
       </div>
     </div>

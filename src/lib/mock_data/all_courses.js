@@ -51,4 +51,5 @@ export const ALL_COURSES = [
     ...path2_5_courses, 
     ...path3_courses, 
     ...path3a_courses,
-    ...path5_courses]
+    ...path5_courses
+]

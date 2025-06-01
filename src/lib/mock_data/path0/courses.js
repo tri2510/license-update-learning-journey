@@ -55,7 +55,7 @@ export const COURSES = [
         shortDescription: "Part C: Building Blocks",
         description: "Part C: Building Blocks",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -71,7 +71,7 @@ export const COURSES = [
         shortDescription: "Part D: Implementation Strategies",
         description: "Part D: Implementation Strategies",
         icon_name: "",
-        state: "locked",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -107,7 +107,7 @@ export const COURSES = [
         icon_name: "",
         top_icon: "/imgs/badge/quality-badge.png",
         image: "/imgs/cert/cert_101_introduction.png",
-        state: "locked-highlight",
+        state: "",
         type: "award",
         context: {
             user_id: 'abc',

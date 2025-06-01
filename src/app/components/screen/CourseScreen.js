@@ -7,8 +7,10 @@ import { SlNotebook } from "react-icons/sl";
 import QuizLesson from '../lessons/QuizLesson';
 import VideoLesson from '../lessons/VideoLesson';
 import TextMarkdownLesson from '../lessons/TextMarkdownLesson';
-import { STATE_COMPLETED } from "@/lib/const";
+import { STATE_COMPLETED, STATE_IN_PROGRESS } from "@/lib/const";
 import { FaCheckCircle } from "react-icons/fa";
+import BtnFullRounded from '../atom/BtnFullRounded';
+import { useRouter } from "next/navigation";
 
 const saveStateLessonFinish = async (course, lesson_slug, data) => {
     if(!course || !course._id || !lesson_slug) return null
@@ -78,44 +80,56 @@ const LessonListItem = ({ lesson, isActive, onActive}) => {
     </div>
 }
 
-const CourseScreen = ({ course }) => {
+const CourseScreen = ({ course, path_slug }) => {
+    const router = useRouter();
+
     if (!course) return <></>
 
     const [activeLessonIndex, setActiveLessonIndex] = useState(0)
     const [activeLesson, setActiveLesson] = useState()
-    // const [activeLessonSlug, setActiveLessonSlug] = useState("")
+    const [lessons, setLessons] = useState([])
+    const [showCourseFinishAnnounce, setShowCourseFinishAnnounce] = useState(false)
     
     useEffect(() => {
         try{
-            let lesson = course.lessons[activeLessonIndex]
+            let lesson = lessons[activeLessonIndex]
             setActiveLesson(lesson)
         } catch(err) {
             // console.log(err)
             setActiveLesson(null)
         }
-    }, [activeLessonIndex])
+    }, [activeLessonIndex, lessons])
 
-
-    // useEffect(() => {
-    //     if(!activeLessonSlug){
-    //         setActiveLesson(null)
-    //         return
-    //     }
-    //     let lesson = course.lessons?.find(l => l.slug === activeLessonSlug)
-    //     setActiveLesson(lesson)
-    // }, [activeLessonSlug])
 
     useEffect(() => {
         if(course.lessons && course.lessons.length>0) {
             // setActiveLessonSlug(course.lessons[0].slug)
+            setLessons(course.lessons)
             setActiveLessonIndex(0)
         }
     }, [course.lessons])
 
     const gotoNextLesson = () => {
-        if(activeLessonIndex < course.lessons.length-1) {
+        if(activeLessonIndex < lessons.length-1) {
             setActiveLessonIndex((v) => v+1)
         }
+        if(activeLessonIndex == lessons.length-1) {
+            setShowCourseFinishAnnounce(true)
+            setActiveLessonIndex(-1)
+        }
+    }
+
+    const applyNewProgressToCourse = async (progress) => {
+        if(!progress || !progress.lessons || !lessons) return
+        let tmpLessons = JSON.parse(JSON.stringify(lessons))
+        tmpLessons.forEach(lesson => {
+            let matchProgress = progress.lessons[lesson.slug]
+            if(matchProgress) {
+                lesson.context.state = matchProgress.state
+                lesson.progress = matchProgress
+            }
+        })
+        setLessons(tmpLessons)
     }
 
 
@@ -132,7 +146,7 @@ const CourseScreen = ({ course }) => {
         <div className='mt-2 flex w-full text-base space-x-4'>
             <div className='w-1/3 max-w-[300px] min-w-[300px] px-0 rounded flex flex-col space-y-2'>
                 {
-                    course.lessons.length > 0 && course.lessons.map((lesson, lIndex) => <LessonListItem key={lIndex} 
+                    lessons.length > 0 && lessons.map((lesson, lIndex) => <LessonListItem key={lIndex} 
                         lesson={lesson} 
                         isActive={lIndex == activeLessonIndex}
                         onActive={(e) => { 
@@ -142,13 +156,33 @@ const CourseScreen = ({ course }) => {
             </div>
             
             <div className='grow border border-slate-200 px-2 rounded bg-white min-h-[80vh]'>
+                { showCourseFinishAnnounce && <div className='w-full mt-12 grid place-items-center'>
+                        <div className='flex flex-col px-4 py-4 w-fit h-fit'>
+                            <div className="text-center">
+                                <h2 className="text-3xl font-bold text-green-600 mb-4">Congratulations! 🎉</h2>
+                                <p className="text-xl text-gray-700 mb-2">You have successfully completed course:</p>
+                                <p className="text-2xl font-semibold text-gray-800 mb-4">{course.name}</p>
+                                <p className="text-gray-600">Keep up the great work and continue your learning journey!</p>
+                            </div>
+                            <div className='mt-10 w-full flex items-center justify-center'>
+                                <BtnFullRounded onClick={() => {
+                                    router.push(`/path/${path_slug}`)
+                                }}>
+                                    Continue Learning
+                                </BtnFullRounded>
+                            </div>
+                        </div>
+                    </div>}
+
                 { activeLesson && <>
                     { activeLesson.type === 'quiz' && <QuizLesson lesson={activeLesson} 
                             onCloseRequest={() => {
                                 gotoNextLesson()
                             }} 
-                            onSumbitLesson={(data) => {
-                                saveStateLessonFinish(course, activeLesson.slug, data || {})
+                            onSumbitLesson={async (data) => {
+                               const res = await  saveStateLessonFinish(course, activeLesson.slug, data || {})
+                               let newCourseProgress = res.data
+                               applyNewProgressToCourse(newCourseProgress)
                             }}/>}
                     { activeLesson.type === 'video' && <VideoLesson lesson={activeLesson}/>}
                     { activeLesson.type === 'text-markdown' && <TextMarkdownLesson lesson={activeLesson}/>}

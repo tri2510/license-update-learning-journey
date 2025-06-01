@@ -12,6 +12,62 @@ import { FaUserTie } from "react-icons/fa";
 import { GiDuration } from "react-icons/gi";
 import dayjs from 'dayjs';
 import { useEffect } from "react";
+import { STATE_NOT_STARTED, STATE_IN_PROGRESS, STATE_COMPLETED, STATE_LOCKED } from "@/lib/const";
+import { IoReturnDownBackSharp } from "react-icons/io5";
+
+const ICON_SET = {
+  not_started: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+  in_progress: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-learning.png',
+  completed: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-done.png',
+  locked: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
+}
+
+const fetchProgressForCourses = async (course_ids) => {
+  if (!course_ids) return null
+  try {
+
+    const res = await fetch(`/api/progress/courses/bulk/${course_ids}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.error || "Failed to update lesson state");
+    }
+    return await res.json();
+  } catch (err) {
+    console.error("Error saving lesson finish state:", err);
+    return null;
+  }
+}
+
+function addMediaUrlForCourses(path, courses) {
+
+  if (!path || !courses) return
+  let ICONS = path.icon_set || ICON_SET
+
+  courses.forEach((course) => {
+    switch (course.context?.state) {
+      case STATE_NOT_STARTED:
+        course.icon = ICONS.not_started;
+        break;
+      case STATE_IN_PROGRESS:
+        course.icon = ICONS.in_progress;
+        break;
+      case STATE_COMPLETED:
+        course.icon = ICONS.completed;
+        break;
+      case STATE_LOCKED:
+        course.icon = ICONS.locked;
+        break;
+      default:
+        course.icon = ICONS.not_started;
+    }
+    console.log(course.icon)
+  });
+}
 
 const InfoGroup = ({ title, content }) => {
   const [collapsed, setCollapsed] = useState(true)
@@ -36,6 +92,76 @@ const InfoGroup = ({ title, content }) => {
 
 const PathScreen = ({ path }) => {
   const router = useRouter();
+  const [courses, setCourses] = useState([])
+  const [maps, setMaps] = useState([])
+  const [updateTrigger, setUpdateTrigger] = useState(0)
+
+  useEffect(() => {
+    if(path) {
+      setMaps(path?.maps || [])
+      setCourses(path?.courses || [])
+      setUpdateTrigger(1)
+    }
+  }, [path])
+
+  useEffect(() => {
+    if(updateTrigger) {
+      if(path?.course_ids){
+        updateProgressForCourses()
+      }
+    }
+  }, [updateTrigger])
+
+  const updateProgressForCourses = async () => {
+    if (!path?.course_ids) IoReturnDownBackSharp
+    try {
+      let res = await fetchProgressForCourses(path?.course_ids.join(','))
+      if (res.success && res.data) {
+        let progresses = res.data
+        console.log(`progresses`, progresses)
+        let tmpCourses = JSON.parse(JSON.stringify(courses))
+        tmpCourses.forEach(course => {
+          let matchProgress = progresses.find(p => p.course_id === course._id)
+          if (matchProgress) {
+            course.context = {
+              state: matchProgress.state,
+              progress: matchProgress
+            }
+            // Update lesson states based on progress
+            if (course.lessons && matchProgress.lessons) {
+              course.lessons.forEach(lesson => {
+                let lessonProgress = matchProgress.lessons[lesson.slug]
+                if (lessonProgress) {
+                  lesson.context = {
+                    state: lessonProgress.state,
+                    progress: lessonProgress
+                  }
+                }
+              })
+            }
+          }
+        })
+        addMediaUrlForCourses(path, tmpCourses)
+        setCourses(tmpCourses)
+
+        if (tmpCourses && tmpCourses.length > 0 && maps && maps.length > 0) {
+          let hasChanged = false
+          let tmpMaps = JSON.parse(JSON.stringify(maps))
+          tmpMaps.forEach(map => {
+            let matchCourse = tmpCourses.find(c => c._id === map.course_id)
+            console.log(matchCourse.icon)
+            if (matchCourse != map.course) {
+              map.course = matchCourse
+              hasChanged = true
+            }
+          })
+          if (hasChanged) {
+            setMaps(tmpMaps)
+          }
+        }
+      }
+    } catch (err) { }
+  }
 
   if (!path) return;
 
@@ -56,38 +182,38 @@ const PathScreen = ({ path }) => {
               {path.description}
             </div>
 
-            { path.time_to_complete && <div className="my-1 flex items-center text-sm text-slate-500">
-              <GiDuration size={20} className='mr-1'/>
+            {path.time_to_complete && <div className="my-1 flex items-center text-sm text-slate-500">
+              <GiDuration size={20} className='mr-1' />
               <span className="mr-2">Time to completed:</span>
               Approx. <span className="mx-1"><b>{path.time_to_complete} </b></span> hours
-            </div> }
+            </div>}
 
             {/* Created by and created date */}
             <div className='text-slate-500 text-sm  my-2 flex items-center'>
-                <CiTimer size={20} className='mr-1'/>
-                <div> Latest updated  <b>{dayjs(path.created_at).format('MMM DD, YYYY')}</b></div>
+              <CiTimer size={20} className='mr-1' />
+              <div> Latest updated  <b>{dayjs(path.created_at).format('MMM DD, YYYY')}</b></div>
 
-                <FaUserTie size={18} className='ml-8 mr-1 text-slate-400'/>
-                <div>Instructor</div>
-                <div className='ml-1'><b>{path.created_by}</b></div>
+              <FaUserTie size={18} className='ml-8 mr-1 text-slate-400' />
+              <div>Instructor</div>
+              <div className='ml-1'><b>{path.created_by}</b></div>
             </div>
 
             {/* Statictics */}
             <div className='text-slate-500 text-sm italic my-2 flex flex-row items-center space-x-4'>
-                <div className='flex flex-row items-center w-[120px]'> 
-                    <FaUsersBetweenLines size={24} className="mr-2 text-slate-400"/>
-                    <span className="mr-1 text-black"><b>{path.num_learners}</b></span> learners  </div>
+              <div className='flex flex-row items-center w-[120px]'>
+                <FaUsersBetweenLines size={24} className="mr-2 text-slate-400" />
+                <span className="mr-1 text-black"><b>{path.num_learners}</b></span> learners  </div>
 
-                <div className='flex flex-row items-center'> 
-                    <PiCertificateBold size={24} className="mr-2 text-slate-400"/>
-                    <span className="mr-1 text-black"><b>{path.num_certified_learners}</b></span> learners got certification  </div>
+              <div className='flex flex-row items-center'>
+                <PiCertificateBold size={24} className="mr-2 text-slate-400" />
+                <span className="mr-1 text-black"><b>{path.num_certified_learners}</b></span> learners got certification  </div>
             </div>
 
           </div>
 
           <div className="mt-2 w-full px-2 md:px-6 ">
-            { path.key_points?.map((item, index) => <InfoGroup 
-                key={index} title={item.title} content={item.content} />) }
+            {path.key_points?.map((item, index) => <InfoGroup
+              key={index} title={item.title} content={item.content} />)}
           </div>
         </div>
 
@@ -95,11 +221,19 @@ const PathScreen = ({ path }) => {
 
       <div className="min-h-[400px]">
         {
-          path.configs?.display_type === "canvas" && <PathCanvasLayout path={path} />
+          path.configs?.display_type === "canvas" && <PathCanvasLayout path={path} maps={maps} 
+            onRequestUpdateProgress={() => {
+              setUpdateTrigger(0)
+              setTimeout(() => {setUpdateTrigger(1) }, 200)
+            }}/>
         }
 
         {
-          path.configs?.display_type !== "canvas" && <PathListLayout path={path} />
+          path.configs?.display_type !== "canvas" && <PathListLayout path={path} courses={courses} 
+            onRequestUpdateProgress={() => {
+              setUpdateTrigger(0)
+              setTimeout(() => {setUpdateTrigger(1) }, 200)
+            }}/>
         }
       </div>
     </div>

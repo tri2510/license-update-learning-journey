@@ -6,7 +6,7 @@ import { PiCertificateBold } from "react-icons/pi";
 import { MdOutlineExplore, MdOutlineChecklist } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import CertificateScreen from "../atom/CertificateScreen";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import BtnFullRounded from "../atom/BtnFullRounded";
@@ -174,13 +174,17 @@ const CourseBlock = ({ path, course, index }) => {
     </div>
 }
 
-const PathListLayout = ({ path }) => {
+const PathListLayout = ({ path, courses, onRequestUpdateProgress }) => {
     const router = useRouter();
+
+    useEffect(() => {
+        console.log(courses)
+    }, [courses])
 
     return <div className="w-full">
         <div className="mt-4 bg-slate-200 min-h-[800px] flex flex-col justify-begin items-center px-4 py-8">
             <div className="max-w-[780px] w-full flex flex-col items-center">
-                {path?.courses && path.courses.map((course, cIndex) => <CourseBlock key={cIndex} index={cIndex} course={course} path={path} />)}
+                {courses && courses.length>0 && courses.map((course, cIndex) => <CourseBlock key={cIndex} index={cIndex} course={course} path={path} />)}
             </div>
         </div>
     </div>

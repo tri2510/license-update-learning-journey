@@ -199,8 +199,6 @@ const QuizLesson = ({ lesson, onCloseRequest, onSumbitLesson }) => {
                     onClick={() => {
                         if(onSumbitLesson) {
                             let data = questions.map(q => { return { answerIndex: q.answerIndex } })
-                            console.log(data)
-                            console.log(questions)
                             onSumbitLesson(data)
                         }
                         const correctAnswers = Math.floor(Math.random() * 3) + (numQuestions - 3);

@@ -23,18 +23,6 @@ const Page = async ({ params }) => {
 
   if (!curPath) notFound()
 
-  if (curPath.maps && curPath.courses) {
-    curPath.maps.forEach((item) => {
-      item.course = curPath.courses.find(c => c._id == item.course_id)
-
-      console.log(`\r\n------------------- ${item.course.slug}`)
-      console.log("context", item.course.context)
-      console.log("progress", item.course.progress)
-      console.log("icon", item.course.icon)
-      console.log("icon_name", item.course.icon_name)
-    })
-  }
-
   return (
     <div
       className="bg-slate-100 text-slate-600 text-2xl p-1
@@ -43,7 +31,7 @@ const Page = async ({ params }) => {
       <BreadCrumb items={[
         { label: curPath.name, link: `/path/${curPath.slug}` },
       ]} />
-      <PathScreen path={curPath} />
+      { curPath && <PathScreen path={curPath} /> }
     </div>
   )
 }
