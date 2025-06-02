@@ -5,7 +5,25 @@ export const welcome_lessons = [
         description: "Introduction to digital.auto playground",
         duration: "5m28",
         type: "video",
-        video_url: "https://www.youtube.com/embed/K3pindMCq1c?si=xpK20Y9Wyeu3C2KC"
+        video_url: "https://www.youtube.com/embed/K3pindMCq1c?si=xpK20Y9Wyeu3C2KC",
+        markdown_content: `
+**Summary of the Digital Auto Playground Introduction**
+
+The video introduces the **digital auto playground**, described as a landing page where users can find everything needed to get started. This includes an overview, getting started guide, **vehicle catalog**, top news, recent prototypes, and popular prototypes.
+
+A key feature is the **vehicle catalog**, which allows users to explore different vehicles. For each vehicle, there is information on its high-level architecture, **vehicle signals**, and Prototype Library. The vehicle signals utilize the **COVESA Vehicle Signal Specification (VSS)**. The VSS catalog is accessible to the left. Users can explore signals for various parts of the vehicle, such as the hood, door, or something as basic as the front wiping system. Opening a system like the front wiping system reveals all actuators and sensors related to its functionality.
+
+The playground allows users to **build prototypes** using these signals. A simple example is a prototype where turning on the wipers and then opening the vehicle's trunk automatically turns off the wipers. This requires code, often using Python mappings of the COVESA VSS vehicle APIs. The example code shows how wipers are turned off within a function. This prototype can be tested in a cloud-based dashboard where the wipers and hood signals are visualized. Executing the prototype shows the wiper turning on, and after a delay (6 seconds in the example), the hood opening, which triggers the function to power down the wipers.
+
+More sophisticated prototypes are also possible, such as a **passenger welcome sequence**. This journey involves detecting the driver's proximity, opening the door, turning on the ambient lights, and then adjusting the seat according to user preferences. This requires a more sophisticated architecture, potentially involving customer data in the cloud to pass permissions and preferences like seat position to the vehicle onboard. The passenger welcome sequence is executed in an STV runtime and uses the COVESA VSS signal-to-service API to control actions like opening the door. These actions need to be performed safely, potentially requiring checks like camera views. The code for this prototype is more complex and uses signals like cabin door driver side, cabin light, and seat. The flow between onboard and offboard systems can be analyzed. The cloud-based dashboard visualizes the different VSS APIs used (door, light, seat, and so on). Executing this prototype demonstrates the door opening, light going on, and the seat being adjusted.
+
+The playground serves as a **cloud-based test environment**. A significant benefit is the ability to migrate these cloud-based prototypes to test hardware or even a test vehicle in later stages. Because the **COVESA VSS is used as the hardware abstraction layer**, the core algorithm itself does not care whether it's running in the cloud, on the test hardware, or in the real vehicle. This enables a **shift-left testing strategy**, allowing for early feedback from key stakeholders, validation of high-level architecture and the APIs that are needed, and then step-by-step migration to test environments.
+
+Users are encouraged to try the playground themselves by visiting playground.digital.auto.
+
+Regarding your request for images from the video, I am unable to provide those based on the text transcript provided as the source. My capabilities are limited to processing and generating text from the information given to me.
+
+`
     },
     {
         slug: 'overview',
