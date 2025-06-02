@@ -3,8 +3,10 @@ import { COURSES as path3a_courses } from "@/lib/mock_data/path3a/courses.js"
 import { COURSES as path3_courses } from "@/lib/mock_data/path3/courses.js" 
 import { COURSES as path2_5_courses } from "@/lib/mock_data/path2.5/courses.js" 
 import { COURSES as path2_courses } from "@/lib/mock_data/path2/courses.js" 
+import { COURSES as path1b_courses } from "@/lib/mock_data/path1b/courses.js"
 import { COURSES as path1_courses } from "@/lib/mock_data/path1/courses.js"
-import { COURSES as path0_courses } from "@/lib/mock_data/path0/courses.js"
+// import { COURSES as path0_courses } from "@/lib/mock_data/path0/courses.js"
+import { COURSES as path0_courses } from "@/lib/mock_data/path0/courses_opt2.js"
 
 const processCourse = (course) => {
     course.forEach(c => {
@@ -47,6 +49,7 @@ processCourse(path5_courses)
 export const ALL_COURSES = [
     ...path0_courses, 
     ...path1_courses, 
+    ...path1b_courses,
     ...path2_courses, 
     ...path2_5_courses, 
     ...path3_courses, 

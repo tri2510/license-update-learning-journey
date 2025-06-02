@@ -93,7 +93,7 @@ const CourseNode = ({ path, item, onRequestUpdateProgress }) => {
           className="absolute h-full w-full top-0 left-0 z-0 object-contain"
         />
         {item.course?.top_icon && <img src={item.course?.top_icon}
-          className="absolute top-[27%] left-[30%] z-10 w-[40%] h-[40%]" />}
+          className="absolute top-[32%] left-[35%] z-10 w-[30%] h-[30%]" />}
       </div>
 
       <div

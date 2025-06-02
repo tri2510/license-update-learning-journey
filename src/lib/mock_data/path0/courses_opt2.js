@@ -1,7 +1,5 @@
-import {LESSONS as TEST_A } from "./test_a"
-import {LESSONS as TEST_B } from "./test_b"
-import {LESSONS as TEST_C } from "./test_c"
-import {LESSONS as TEST_D } from "./test_d"
+import { lessons_overview } from "./lessons_overview";
+import { lessons_parta } from "./lessons_parta";
 
 export const COURSES = [
     {
@@ -13,38 +11,28 @@ export const COURSES = [
         top_icon: "/imgs/icon_book.png",
         state: "finished",
         type: "lesson",
+        lessons: lessons_overview,
         extends: {
-            external_link: "https://www.sdv.guide/sdv101",
+            // external_link: "https://www.sdv.guide/sdv101",
         },
     },
     {
         _id: "6452a86e7895abcd12345679", // Random MongoDB ObjectId
         name: "Part A: Essentials",
-        shortDescription: "Part A: Essentials",
-        description: "Part A: Essentials",
+        slug: 'part-a-essentials',
+        shortDescription: "",
+        description: "",
         icon_name: "",
         top_icon: "/imgs/icon_book.png",
         state: "finished",
         type: "lesson",
-        extends: {
-            external_link: "https://www.sdv.guide/sdv101/part-a-essentials",
-        },
-    },
-    {
-        _id: "6452a86e7895abcd12345677", // Random MongoDB ObjectId
-        name: "Quiz A",
-        shortDescription: "Complete the following test to confirm your knowledge and receive your certificate.",
-        description: "Complete the following test to confirm your knowledge and receive your certificate.",
-        icon_name: "",
-        top_icon: "/imgs/icon_question.png",
-        state: "released",
-        type: "test",
-        lessons: TEST_A,
+        lessons: lessons_parta,
         extends: { },
     },
     {
         _id: "6452a86e7895abcd12345680", // Random MongoDB ObjectId
         name: "Part B: Lessons Learned",
+        slug: 'part-b-lessons-learned',
         shortDescription: "Part B: Lessons Learned",
         description: "Part B: Lessons Learned",
         icon_name: "",
@@ -54,18 +42,6 @@ export const COURSES = [
         extends: {
             external_link: "https://www.sdv.guide/sdv101/part-b-lessons-learned",
         },
-    },
-    {
-        _id: "6452a86e7895abcd12345685", // Random MongoDB ObjectId
-        name: "Quiz B",
-        shortDescription: "Complete the following test to confirm your knowledge and receive your certificate.",
-        description: "Complete the following test to confirm your knowledge and receive your certificate.",
-        icon_name: "",
-        top_icon: "/imgs/icon_question.png",
-        state: "released",
-        type: "test",
-        lessons: TEST_B,
-        extends: { },
     },
     {
         _id: "6452a86e7895abcd12345681", // Random MongoDB ObjectId
@@ -81,18 +57,6 @@ export const COURSES = [
         },
     },
     {
-        _id: "6452a86e7895abcd12345686", // Random MongoDB ObjectId
-        name: "Quiz C",
-        shortDescription: "Complete the following test to confirm your knowledge and receive your certificate.",
-        description: "Complete the following test to confirm your knowledge and receive your certificate.",
-        icon_name: "",
-        top_icon: "/imgs/icon_question.png",
-        state: "released",
-        type: "test",
-        lessons: TEST_C,
-        extends: { },
-    },
-    {
         _id: "6452a86e7895abcd12345682", // Random MongoDB ObjectId
         name: "Part D: Implementation Strategies",
         shortDescription: "Part D: Implementation Strategies",
@@ -105,18 +69,24 @@ export const COURSES = [
             external_link: "https://www.sdv.guide/sdv101/part-d-implementation-strategies",
         },
     },
-    {
-        _id: "6452a86e7895abcd12345683", // Random MongoDB ObjectId
-        name: "Quiz D",
-        shortDescription: "Complete the following test to confirm your knowledge and receive your certificate.",
-        description: "Complete the following test to confirm your knowledge and receive your certificate.",
-        icon_name: "",
-        top_icon: "/imgs/icon_question.png",
-        state: "released",
-        type: "test",
-        lessons: TEST_D,
-        extends: { },
-    },
+    // {
+    //     _id: "6452a86e7895abcd12345683", // Random MongoDB ObjectId
+    //     name: "Verify your knowledge",
+    //     shortDescription: "Complete the following test to confirm your knowledge and receive your certificate.",
+    //     description: "Complete the following test to confirm your knowledge and receive your certificate.",
+    //     icon_name: "",
+    //     top_icon: "/imgs/icon_question.png",
+    //     state: "released",
+    //     type: "final-test",
+    //     context: {
+    //         user_id: 'abc',
+    //         state: 'ready'
+    //     },
+    //     lessons: TEST_A,
+    //     extends: {
+    //         // external_link: "https://www.sdv.guide/sdv101/part-a-essentials",
+    //     },
+    // },
     {
         _id: "6452a86e7895abcd12345684", // Random MongoDB ObjectId
         name: "Certificate",

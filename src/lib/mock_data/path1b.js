@@ -1,67 +1,56 @@
-export const PATH2_5 = {
-  _id: "651fb6d0a63a8b3774a283ee",  // randome mongo id 
-  name: "./pulse framework",
-  description: "The ./pulse framework introduces a pioneering multi-speed delivery model.",
-  slug: "pulse-framework",
+export const PATH1B = {
+  _id: "652f3c2e4f1a2b3c4d5e6f7d",
+  name: "[sdv.guide] SDV102",
+  description:
+    "This guide accompanies SDV102, an advanced guide for the next level after SDV101.",
+  slug: "sdv-guide-sdv102",
   path_type: "standard",
+  level: "2",
+  time_to_complete: 2,
   background_img: "/imgs/green_bg.png",
-  image: "/imgs/pulse.jpeg",
-  thumb: "/imgs/pulse.jpeg",
+  image: "/imgs/sdv201.jpeg",
+  thumb: "/imgs/sdv201.jpeg",
   category: "onboarding",
   tags: ["onboard", "general", "playground", "beginner", "getting-started"],
   valid_from: "2025-01-01T00:00:00.000Z",
   valid_to: "2026-01-01T00:00:00.000Z",
-  state: "published",
-  level: "4",
+  state: "locked",
   configs: {
-    display_type: "list"
+    display_type: "canvas"
   },
+  extends: {
+    // external_link: "https://www.sdv.guide/sdv101",
+  },
+  hiddenContent: {},
   icon_set: {
     not_started: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
     in_progress: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-learning.png',
     completed: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-done.png',
     locked: 'https://bewebstudio.digitalauto.tech/data/projects/zb1Shh3qkfNG/course-notyet.png',
   },
-  extends: {
-    // external_link: "https://www.sdv.guide/pulse",
-    est_release_date: 'end of July'
-  },
-  hiddenContent: {
-    secret: "hidden-information",
-  },
   course_ids: [
-    "7452a86e7895abcd12345678",
-    "7452a86e7895abcd12345679",
-    "7452a86e7895abcd12345680",
-    "7452a86e7895abcd12345681",
-    "7452a86e7895abcd12345682",
-    "7452a86e7895abcd12345698",
-    "7452a86e7895abcd12345699",
+
   ],
   maps: [
-    // {
-    //     course_id: "652f3c2e4f1a2b3c4d5e6f7c",
-    //     x: "6%",
-    //     y: "45%"
-    // }
+    
   ],
   createdAt: "2024-07-19T14:00:00.000Z",
   updatedAt: "2024-07-19T14:00:00.000Z",
-  created_by: "Dirk Slama",
+  created_by: "Prof. Dirk Slama",
   num_learners: 34,
   num_certified_learners: 12,
   key_points: [
     {
       title: 'What will I learn?',
-      content: `TBD`,
+      content: ``,
     },
     {
-      title: 'What will I learn?',
-      content: `TBD`,
+      title: 'What do I need to know?',
+      content: ``,
     },
     {
       title: 'What do I need?',
-      content: `TBD`,
+      content: ``,
     },
   ]
 }

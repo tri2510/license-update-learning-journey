@@ -8,7 +8,7 @@ let COLLECTIONs = [
     {
         name: 'Theory & Methods',
         description: 'Fundamental theory, key concepts, and methodologies shaping software-defined vehicles',
-        paths_slugs: ['sdv-101', 'sdv-guide-sdv101', 'pulse-framework'],
+        paths_slugs: ['sdv-guide-sdv101', 'sdv-guide-sdv102', 'pulse-framework'],
         paths: []
     },
     {
@@ -27,9 +27,23 @@ let COLLECTIONs = [
 ]
 
 COLLECTIONs.forEach(collection => {
-  collection.paths = PATHS.filter(path => collection.paths_slugs.includes(path.slug));
+  collection.paths = [];
+  for (let i = 0; i < collection.paths_slugs.length; i++) {
+    const slug = collection.paths_slugs[i];
+    const foundPath = PATHS.find(path => path.slug === slug);
+    if (foundPath) {
+      collection.paths.push(foundPath);
+    }
+  }
   collection.paths.forEach(path => {
-      path.courses = ALL_COURSES.filter(course => path.course_ids.includes(course._id));
+    path.courses = []
+    for(let i=0; i< path.course_ids.length; i++) {
+      let course = ALL_COURSES.find(c => c._id == path.course_ids[i])
+      if(course) {
+        path.courses.push(course)
+      }
+    }
+    // path.courses = ALL_COURSES.filter(course => path.course_ids.includes(course._id));
   });
 });
 
