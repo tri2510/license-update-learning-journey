@@ -76,16 +76,16 @@ const PathList = ({ paths, title, titleTag, description }) => {
                                             .map((c, cIndex) => <>
                                             {cIndex > 0 && <div key={cIndex*2} className="grow h-[2px] bg-black"></div>}
                                             <div key={(cIndex*2)+1}>
-                                                {c.context?.state === 'finished' && <div
+                                                {c.context?.state === 'completed' && <div
                                                     className="rounded-full w-4 h-4 border-black border-2 bg-black grid place-items-center">
                                                     <FaCheck size={10} className="text-white" />
                                                 </div>}
-                                                {c.context?.state === 'progress' && <div
+                                                {c.context?.state === 'in_progress' && <div
                                                     className="rounded-full w-4 h-4 border-black border-2 flex">
                                                     <div className="flex-1 bg-black"></div>
                                                     <div className="flex-1"></div>
                                                 </div>}
-                                                {!['finished', 'progress'].includes(c.context?.state) && <div
+                                                {!['completed', 'in_progress'].includes(c.context?.state) && <div
                                                     className="rounded-full w-4 h-4 border-black border-2 bg-white"></div>}
                                             </div>
                                         </>)}

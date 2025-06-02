@@ -13,26 +13,21 @@ const processCourse = (course) => {
         c.updated_at = c.updated_at || new Date("2023-06-07")
         c.lessons = c.lessons || []
         c.created_by = c.created_by || "John Doe"
-        c.num_learners = c.num_learners || 745
-        c.num_certified_learners = c.num_certified_learners || 532
-        c.context = c.context || {
-            user_id: 'abc',
-            state: 'finished'
-        }
+        c.num_learners = c.num_learners || 0
+        c.num_certified_learners = c.num_certified_learners || 0
+        c.context = { }
         c.lessons = c.lessons || []
         c.hiddenContent = c.hiddenContent || {}
         c.course_type = c.course_type || "standard"
-        c.background_img = c.background_img || "/imgs/green_bg.png"
-        c.path_type = c.path_type || "standard"
         c.tags = c.tags || []
         c.extends = c.extends || {}
         c.configs = c.configs || {}
         c.image = c.image || "/imgs/sdv101.jpg"
-        c.thumb = c.thumb || "https://example.com/images/js-thumb.jpg"
-        c.category = c.category || "Programming"
-        c.icon = c.icon || "https://example.com/icons/js-icon.png"
-        c.icon_name = c.icon_name || "lesson-finished"
-        c.state = c.state || "finished"
+        c.thumb = c.thumb || ''
+        c.category = c.category || ''
+        c.icon = c.icon || ''
+        c.icon_name = c.icon_name || ''
+        c.state = c.state || ''
         c.duration = c.duration || "4 hrs"
         c.difficulty = c.difficulty || "beginner"
         c.valid_from = c.valid_from || new Date("2023-01-01")
@@ -56,4 +51,5 @@ export const ALL_COURSES = [
     ...path2_5_courses, 
     ...path3_courses, 
     ...path3a_courses,
-    ...path5_courses]
+    ...path5_courses
+]

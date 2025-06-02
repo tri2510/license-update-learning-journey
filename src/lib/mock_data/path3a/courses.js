@@ -4,8 +4,8 @@ export const COURSES = [
         name: "Overview",
         shortDescription: "Overview",
         description: "Overview",
-        icon_name: "lesson-ready",
-        state: "locked",
+        icon_name: "",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -20,8 +20,8 @@ export const COURSES = [
         name: "How to create your own widget",
         shortDescription: "How to create your own widget",
         description: "How to create your own widget",
-        icon_name: "lesson-ready",
-        state: "locked",
+        icon_name: "",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -36,8 +36,8 @@ export const COURSES = [
         name: "Deploy your widget",
         shortDescription: "Deploy your widget",
         description: "Deploy your widget",
-        icon_name: "lesson-ready",
-        state: "locked",
+        icon_name: "",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -52,8 +52,8 @@ export const COURSES = [
         name: "Verify your knowledge",
         shortDescription: "Verify your knowledge",
         description: "Verify your knowledge",
-        icon_name: "lesson-ready",
-        state: "locked",
+        icon_name: "",
+        state: "",
         type: "lesson",
         context: {
             user_id: 'abc',
@@ -69,7 +69,7 @@ export const COURSES = [
         shortDescription: "Get your certification and show it off to the world!",
         description: "Congratulations! You have completed the course and are now ready to get your certification.",
         icon_name: "certificate",
-        state: "locked-highlight",
+        state: "",
         type: "award",
         context: {
             user_id: 'abc',

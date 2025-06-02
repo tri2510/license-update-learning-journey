@@ -12,10 +12,11 @@ async function fetchPaths() {
     }
 }
 
-async function fetchPathBySlug(slug) {
+async function fetchPathBySlug(slug, user_id, token) {
     if (!slug) throw ('Invalid post slug');
+
     try {
-        const response = (await fetch(process.env.HOST + "/api/paths/" + slug))
+        const response = (await fetch(process.env.HOST + `/api/paths/${slug}?user_id=${user_id}&token=${token}`))
         const data = await response.json();
         if (data && data.success) {
             return data.data
