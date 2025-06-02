@@ -3,16 +3,52 @@
 import { useRouter } from "next/navigation";
 import CertificateScreen from "../atom/CertificateScreen";
 import { useState } from "react"
+import Popup from "../atom/Popup";
+import { IoClose } from "react-icons/io5";
+import BtnFullRounded from "../atom/BtnFullRounded";
 
 import { saveStateCourseStarted, saveStateCourseCompleted } from "@/lib/frontend/course"
 
 const CourseNode = ({ path, item, onRequestUpdateProgress }) => {
   const router = useRouter();
   const [showCert, setShowCert] = useState(false)
+  const [popupExternalLaunch, setPopupExternalLaunch] = useState(false)
 
   if (!path || !item) return <></>
   return <>
     {showCert && <CertificateScreen image={item.course?.image} requestClose={() => setShowCert(false)} />}
+
+    {popupExternalLaunch && <Popup>
+      <div className="pl-4 pr-2 py-2 flex justify-between items-center text-xl font-bold text-black border-b border-slate-200">
+        Launch External Site
+
+        <IoClose size={30} className="cursor-pointer hover:scale-110 text-black"
+          onClick={() => setPopupExternalLaunch(false)} />
+      </div>
+      <div className="flex text-sm items-center justify-center mt-2 px-8 py-4">
+        <p className="text-gray-600 text-center">
+          <span><i>You are about to be redirected to an external course at: </i></span>
+          <div className="mt-2 text-black-600 break-all text-base text-black">
+            {item.course?.extends?.external_link}
+          </div>
+        </p>
+      </div>
+      <div className="mt-4 mb-2 py-2 px-4 flex items-center justify-between">
+        <div></div>
+        <BtnFullRounded onClick={async () => {
+          setPopupExternalLaunch(false)
+          window.open(item.course?.extends?.external_link, "_blank");
+          if (onRequestUpdateProgress) onRequestUpdateProgress()
+
+          if (item.course?.state != 'completed') {
+            await saveStateCourseCompleted(item.course)
+          }
+        }}>
+          Launch
+        </BtnFullRounded>
+      </div>
+    </Popup>}
+
     <div
       className={`absolute flex flex-col items-center cursor-pointer hover:scale-110 z-20 
             ${["locked"].includes(item.course?.state) && "opacity-50"}
@@ -37,13 +73,7 @@ const CourseNode = ({ path, item, onRequestUpdateProgress }) => {
         }
 
         if (item.course?.extends?.external_link) {
-          window.open(item.course?.extends?.external_link, "_blank");
-          if(onRequestUpdateProgress) onRequestUpdateProgress()
-          // window.location.reload()
-
-          if(item.course?.state!='completed') {
-            await saveStateCourseCompleted(item.course)
-          }
+          setPopupExternalLaunch(true)
           return;
         }
 
@@ -79,7 +109,7 @@ const CourseNode = ({ path, item, onRequestUpdateProgress }) => {
   </>
 }
 
-const PathCanvasLayout = ({ path, maps, onRequestUpdateProgress}) => {
+const PathCanvasLayout = ({ path, maps, onRequestUpdateProgress }) => {
   const router = useRouter();
 
   return <div className="px-2 lg:px-4">
@@ -99,7 +129,7 @@ const PathCanvasLayout = ({ path, maps, onRequestUpdateProgress}) => {
       </div> */}
 
       <div className="absolute top-0 left-0 right-0 bottom-0 opacity-10 bg-white z-10"></div>
-      { maps && maps.map((item, index) => <CourseNode key={index} path={path} item={item} onRequestUpdateProgress={onRequestUpdateProgress}/>)}
+      {maps && maps.map((item, index) => <CourseNode key={index} path={path} item={item} onRequestUpdateProgress={onRequestUpdateProgress} />)}
     </div>
   </div>
 }

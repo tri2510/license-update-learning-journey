@@ -125,8 +125,12 @@ const CourseScreen = ({ course, path_slug }) => {
         tmpLessons.forEach(lesson => {
             let matchProgress = progress.lessons[lesson.slug]
             if(matchProgress) {
-                lesson.context.state = matchProgress.state
-                lesson.progress = matchProgress
+                lesson.context = {
+                    state: matchProgress.state,
+                    progress: matchProgress
+                }
+                // lesson.context.state = matchProgress.state
+                // lesson.progress = matchProgress
             }
         })
         setLessons(tmpLessons)
@@ -184,8 +188,28 @@ const CourseScreen = ({ course, path_slug }) => {
                                let newCourseProgress = res.data
                                applyNewProgressToCourse(newCourseProgress)
                             }}/>}
-                    { activeLesson.type === 'video' && <VideoLesson lesson={activeLesson}/>}
-                    { activeLesson.type === 'text-markdown' && <TextMarkdownLesson lesson={activeLesson}/>}
+
+                    { activeLesson.type === 'video' && <VideoLesson lesson={activeLesson} 
+                            onCloseRequest={() => {
+                                gotoNextLesson()
+                            }} 
+                            onSumbitLesson={async (data) => {
+                                const res = await  saveStateLessonFinish(course, activeLesson.slug, data || {})
+                                let newCourseProgress = res.data
+                                applyNewProgressToCourse(newCourseProgress)
+                             }}
+                            />}
+
+                    {   activeLesson.type === 'text-markdown' && <TextMarkdownLesson lesson={activeLesson}
+                        onCloseRequest={() => {
+                            gotoNextLesson()
+                        }} 
+                        onSumbitLesson={async (data) => {
+                            const res = await  saveStateLessonFinish(course, activeLesson.slug, data || {})
+                            let newCourseProgress = res.data
+                            applyNewProgressToCourse(newCourseProgress)
+                         }}
+                    />}
                 </> }
             </div>
         </div>

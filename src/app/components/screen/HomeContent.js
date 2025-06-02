@@ -18,7 +18,7 @@ const HomeContent = ({ }) => {
             for (const [key, value] of searchParams.entries()) {
                 queryParams[key] = value;
             }
-            console.log("Query Params:", queryParams);
+            // console.log("Query Params:", queryParams);
         }
 
         if (queryParams.user_id) {
@@ -28,12 +28,62 @@ const HomeContent = ({ }) => {
         await fetchPaths()
     }
 
+    /*
+
+    const fetchProgressForCourses = async (course_ids) => {
+        if (!course_ids) return null
+        try {
+      
+          const res = await fetch(`/api/progress/courses/bulk/${course_ids}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+          if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.error || "Failed to update lesson state");
+          }
+          return await res.json();
+        } catch (err) {
+          console.error("Error saving lesson finish state:", err);
+          return null;
+        }
+    }
+    */
+
+    const applyProgressForCollections = async (collections) => {
+        // TODO: must  fetch course progress by course_ids
+        try {
+            collections.forEach(collection => {
+                if(collection.paths) {
+                    collection.paths.forEach(path => {
+                        if(path.courses) {
+                            path.courses.forEach(course => {
+                                if(course.progress) {
+                                    course.context = {
+                                        state: course.progress.state,
+                                        progress: course.progress
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
     const fetchPaths = async () => {
         try {
             const response = await fetch("/api/collections")
             const data = await response.json();
             if (data && data.success) {
-                setItems(data.data)
+                let collections = data.data
+                await applyProgressForCollections(collections)
+                setItems(collections)
             } else {
                 setItems([])
             }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Markdown from 'react-markdown'
+import BtnFullRounded from "../atom/BtnFullRounded";
 
 const components = {
     // Headings
@@ -120,7 +121,15 @@ const components = {
 };
 
 
-const TextMarkdownLesson = ({ lesson, onCloseRequest }) => {
+const TextMarkdownLesson = ({ lesson, onCloseRequest, onSumbitLesson }) => {
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (onSumbitLesson) {
+                onSumbitLesson({})
+            }
+        }, [3000])
+    }, [])
 
     if (!lesson) return <></>
 
@@ -135,6 +144,20 @@ const TextMarkdownLesson = ({ lesson, onCloseRequest }) => {
                 components={components}
             >
                 {lesson.markdown_content}</Markdown>
+        </div>
+
+        <div className="mt-2 px-2 py-2 border-t border-gray-500 flex items-center space-x-2">
+            <div className="grow"></div>
+
+            <BtnFullRounded
+                onClick={() => {
+                    if (onCloseRequest) {
+                        onCloseRequest({})
+                    }
+                }}>
+                Next Lesson
+            </BtnFullRounded>
+
         </div>
 
 

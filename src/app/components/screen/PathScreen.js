@@ -118,8 +118,11 @@ const PathScreen = ({ path }) => {
       let res = await fetchProgressForCourses(path?.course_ids.join(','))
       if (res.success && res.data) {
         let progresses = res.data
-        console.log(`progresses`, progresses)
+        // console.log(`progresses`, progresses)
         let tmpCourses = JSON.parse(JSON.stringify(courses))
+        // TODO: temp solutions, set award state on frontend base on other course state, later: no need, backend will do that
+        let isPathFinish = true
+
         tmpCourses.forEach(course => {
           let matchProgress = progresses.find(p => p.course_id === course._id)
           if (matchProgress) {
@@ -127,6 +130,8 @@ const PathScreen = ({ path }) => {
               state: matchProgress.state,
               progress: matchProgress
             }
+            
+
             // Update lesson states based on progress
             if (course.lessons && matchProgress.lessons) {
               course.lessons.forEach(lesson => {
@@ -140,7 +145,25 @@ const PathScreen = ({ path }) => {
               })
             }
           }
+
+          if(course.type != 'award') {
+            if(!course.context?.state || course.context?.state != 'completed') {
+              isPathFinish = false
+            }
+          }
         })
+
+        // TODO: temp solutions, set award state on frontend base on other course state, later: no need, backend will do that
+        if(isPathFinish) {
+          tmpCourses.forEach(course => {
+              if(course.type == 'award') {
+                course.context = {
+                  state: 'completed'
+                }
+              }
+          })
+        }
+
         addMediaUrlForCourses(path, tmpCourses)
         setCourses(tmpCourses)
 
