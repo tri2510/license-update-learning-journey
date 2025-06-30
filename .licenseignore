@@ -30,6 +30,9 @@ libs/
 LICENSE
 NOTICE
 
+# Generated data files
+src/lib/mock_data/path*/lessons_overview.js
+
 # Config files
 .gitignore
 .licenseignore
